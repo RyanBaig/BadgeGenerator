@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <title>Custom Badge Generator</title>
+</head>
+<body>
+    <header>
+        <h1>Badge Generator</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/profile_badges">Profile Badges</a></li>
+                <li><a href="/generate_badge">Generate Badge</a></li>
+                <li><a href="/about_us">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="badge-generator">
+            <center>
+            <h2>Custom Badge Generator</h2>
+            </center>
+          <center>
+                <div class="badge-preview">
+                    <h3>Badge Preview</h3>
+                    <button type="button" id="previewButton" class="cta-button">Preview Badge</button>
+                    <img id="previewImage" src="" alt="Badge Preview">
+                </div>
+                <div id="workInProgress" style="display: none;">
+                    <h3>Work In Progress</h3>
+                    <p>This is currently a work-in-progress but feel free to use the shields.io badge maker!</p>
+                </div>
+            </center>
+            <form id="badgeForm">
+                <label for="provider">Provider:</label>
+                <select id="provider" name="provider">
+                    <option value="badgers.space">badgers.space</option>
+                    <option value="shields.io">shields.io</option>
+                </select>
+                
+                <div id="badgeTypeContainer" style="display: none;">
+                    <label for="badgeType">Badge Type:</label>
+                    <select id="badgeType" name="badgeType">
+                        <option value="color">1 Color</option>
+                        <option value="two-colors">Two Colors</option>
+                    </select>
+                </div>
+                
+                <div id="badgeContentInput" style="display: none;">
+                    <label for="badgeContent">Badge Content:</label>
+                    <input type="text" id="badgeContent" name="badgeContent" placeholder="Text on logo side">
+                </div>
+                
+                <label for="label">Label:</label>
+                <input type="text" id="label" name="label" placeholder="Text on color side">
+                
+                <label for="color">Color:</label>
+                <input type="color" id="color" name="color">
+                
+                <label for="status">Status:</label>
+                <input type="text" id="status" name="status">
+                
+                <div id="shieldsOnly" style="display: none;">
+                    <!-- Fields for shields.io options -->
+                    <label for="style">Style:</label>
+                    <select id="style" name="style">
+                        <option value="flat">Flat</option>
+                        <option value="flat-square">Flat Square</option>
+                        <option value="plastic">Plastic</option>
+                        <option value="for-the-badge">For the Badge</option>
+                        <option value="social">Social</option>
+                    </select>
+                    
+                    <div>
+                        <label for="logo">Logo:</label>
+                    </div>
+                    <label>Get icon names from <a href="https://github.com/simple-icons/simple-icons/blob/master/slugs.md">Here.</a></label>
+                    <input type="text" id="logo" name="logo" placeholder="appveyor">
+                    
+                    <label for="logoColor">Logo Color:</label>
+                    <input type="text" id="logoColor" name="logoColor" placeholder="logocolor">
+                    
+                    <label for="labelColor">Logo Background Color:</label>
+                    <input type="text" id="labelColor" name="labelColor" placeholder="The background color behind the logo">
+                    
+                    <label for="cacheSeconds">Cache Seconds:</label>
+                    <input type="number" id="cacheSeconds" name="cacheSeconds" placeholder="cacheseconds">
+                </div>
+            </form>
+        </section>
+    </main>
+    <script>
+const providerSelect = document.getElementById('provider');
+const badgeTypeContainer = document.getElementById('badgeTypeContainer');
+const badgeContentInput = document.getElementById('badgeContentInput');
+const workInProgress = document.getElementById('workInProgress');
+const shieldsOnlyFields = document.getElementById('shieldsOnly');
+const badgeTypeSelect = document.getElementById('badgeType');
+const previewButton = document.getElementById('previewButton');
+const previewImage = document.getElementById('previewImage');
+const badgeForm = document.getElementById('badgeForm');
+const statusLabel = document.querySelector('label[for="status"]');
+const colorLabel = document.querySelector('label[for="color"]');
+const statusInput = document.getElementById('status');
+const colorInput = document.getElementById('color');
+
+providerSelect.addEventListener('change', function() {
+    if (providerSelect.value === 'shields.io') {
+        badgeTypeContainer.style.display = 'block';
+        badgeContentInput.style.display = badgeTypeSelect.value === 'two-colors' ? 'block' : 'none';
+        workInProgress.style.display = 'none';
+        shieldsOnlyFields.style.display = 'block';
+        statusLabel.style.display = 'none'; // Hide the status label
+        colorLabel.style.display = 'none'; // Hide the color label
+        statusInput.style.display = 'none'; // Hide the status input
+        colorInput.style.display = 'none'; // Hide the color input
+    } else if (providerSelect.value === 'badgers.space') {
+        badgeTypeContainer.style.display = 'none';
+        badgeContentInput.style.display = 'none';
+        workInProgress.style.display = 'block';
+        shieldsOnlyFields.style.display = 'none';
+        statusLabel.style.display = 'block'; // Show the status label
+        colorLabel.style.display = 'block'; // Show the color label
+        statusInput.style.display = 'block'; // Show the status input
+        colorInput.style.display = 'block'; // Show the color input
+    } else {
+        badgeTypeContainer.style.display = 'none';
+        badgeContentInput.style.display = 'none';
+        workInProgress.style.display = 'none';
+        shieldsOnlyFields.style.display = 'none';
+        statusLabel.style.display = 'block'; // Show the status label
+        colorLabel.style.display = 'block'; // Show the color label
+        statusInput.style.display = 'block'; // Show the status input
+        colorInput.style.display = 'block'; // Show the color input
+    }
+});
+
+badgeTypeSelect.addEventListener('change', function() {
+    badgeContentInput.style.display = badgeTypeSelect.value === 'two-colors' ? 'block' : 'none';
+});
+
+previewButton.addEventListener('click', function() {
+    const formData = new FormData(badgeForm);
+    const params = new URLSearchParams(formData);
+    params.delete('provider');
+
+    const isShieldsIoProvider = providerSelect.value === 'shields.io';
+    if (isShieldsIoProvider) {
+        let badgeUrl = `https://img.shields.io/badge/${params.get('badgeContent')}-${params.get('label')}-${params.get('color').replace('#', '')}`;
+        const style = params.get('style');
+        const logo = params.get('logo');
+        const logoColor = params.get('logoColor');
+        const labelColor = params.get('labelColor');
+        const cacheSeconds = params.get('cacheSeconds');
+
+        if (style) badgeUrl += `?style=${style}`;
+        if (logo) badgeUrl += `&logo=${logo}`;
+        if (logoColor) badgeUrl += `&logoColor=${logoColor}`;
+        if (labelColor) badgeUrl += `&labelColor=${labelColor}`;
+        if (cacheSeconds) badgeUrl += `&cacheSeconds=${cacheSeconds}`;
+
+        if (badgeTypeSelect.value === 'two-colors') {
+            badgeUrl += `&color&color=${params.get('color')}`;
+        }
+
+        previewImage.src = badgeUrl;
+    } else {
+        // For badgers.space or other providers
+        // Implement the logic here if needed
+    }
+});
+
+</script>
+
+</body>
+</html>

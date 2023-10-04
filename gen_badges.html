@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generate a Badge</title>
+<link rel="stylesheet" href="/assets/css/styles.css">
+<style>
+  .box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    width: 300px;
+    height: 300px;
+  }
+
+  .box img {
+    max-width: 100%;
+    max-height: 70%;
+    margin-bottom: 10px;
+  }
+
+    .text {
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+ <header>
+
+        <h1>Generate a Badge</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/profile_badges">Profile Badges</a></li>
+                <li><a href="/generate_badge">Generate Badge</a></li>
+                <li><a href="/about_us">About Us</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+<div class="box-container">
+  <a href="/generate/custom" class="box">
+    <img src="https://i.imgur.com/PSi42WT.png" alt="Custom Badge">
+
+  </a>
+
+  <a href="/generate/platform" class="box">
+    <img src="https://i.imgur.com/ES6FRbF.png" alt="Platform Badges">
+  </a>
+</div>
+</body>
+</html>

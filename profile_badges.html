@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Badge Search</title>
+        <link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
+    </head>
+    <body>
+        <header>
+            <h1>Badge Search</h1>
+
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/profile_badges">Profile Badges</a></li>
+                    <li><a href="/generate_badge">Generate Badge</a></li>
+                    <li><a href="/about_us">About Us</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="hero">
+            <h2>Search for Badges</h2>
+            <h3>Huge Credit to <a
+                    href="https://github.com/Ileriayo/markdown-badges/">Ileriayo</a>
+                for the Badges!</h3>
+            <h4>Tip: Use <code>@c:</code> before your query to search
+                for categories!</h4>
+            <details>
+                <summary>👇 How to use a different badge style</summary>
+                <hr>
+
+                <blockquote> <strong>Note:</strong> <code>for-the-badge</code>
+                    is the style that we chose for appearance purposes. Other
+                    styles are available at <a
+                        href="https://shields.io/#styles">https://shields.io/#styles</a>
+                    and can be used with the badges here. Thanks, @kingthorin
+                    for mentioning this!</blockquote>
+
+
+                <table>
+                    <tr>
+                        <th>S/N</th>
+                        <th>Types</th>
+                        <th>Styles</th>
+                        <th>Markdown</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Plastic</td>
+                        <td><img
+                                src="https://shields.io/badge/style-plastic-03650f?logo=appveyor&style=plastic"
+                                alt="Plastic"></td>
+                        <td><code>https://shields.io/badge/style-plastic-03650f?logo=appveyor&style=plastic</code></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Flat-square</td>
+                        <td><img
+                                src="https://shields.io/badge/style-flat--square-03650f?logo=appveyor&style=flat-square"
+                                alt="Flat-square"></td>
+                        <td><code>https://shields.io/badge/style-flat--square-03650f?logo=appveyor&style=flat-square</code></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Flat</td>
+                        <td><img
+                                src="https://shields.io/badge/style-flat-03650f?logo=appveyor&style=flat"
+                                alt="Flat"></td>
+                        <td><code>https://shields.io/badge/style-flat-03650f?logo=appveyor&style=flat</code></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Social</td>
+                        <td><img
+                                src="https://shields.io/badge/style-social-03650f?logo=appveyor&style=social"
+                                alt="Social"></td>
+                        <td><code>https://shields.io/badge/style-social-03650f?logo=appveyor&style=social</code></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>For-the-badge</td>
+                        <td><img
+                                src="https://shields.io/badge/style-for--the--badge-03650f?logo=appveyor&style=for-the-badge"
+                                alt="For-the-badge"></td>
+                        <td><code>https://shields.io/badge/style-for--the--badge-03650f?logo=appveyor&style=for-the-badge</code></td>
+                    </tr>
+                </table>
+
+
+
+                <p>💡 To use a different style: Replace <code>for-the-badge</code>
+                    in the markdown link with any of the styles above.</p>
+
+
+                <p>Example:</p>
+
+
+                <p>🧷 For plastic:</p>
+
+
+                <code>https://shields.io/badge/style-plastic-green?logo=appveyor&style=plastic</code>
+                <p>🤏🏽 For Flat:</p>
+
+
+                <code>https://shields.io/badge/style-flat-green?logo=appveyor&style=flat</code>
+            </details>
+
+
+        </div>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search for badges...">
+        </div>
+        <div id="badgeResults">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Image</th>
+                        <th>Markdown</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <script>
+const searchInput = document.getElementById('searchInput');
+const badgeResults = document.querySelector('#badgeResults tbody');
+
+searchInput.addEventListener('input', function() {
+    const searchTerm = searchInput.value.toLowerCase();
+    badgeResults.innerHTML = ''; // Clear previous search results
+
+    if (searchTerm.trim() !== '') {
+        if (searchTerm.startsWith('@c:')) {
+            const categoryTerm = searchTerm.replace('@c:', '').trim();
+            fetch(`https://ryanthedev.vercel.app/api/badgegenerator/categorysearch?q=${categoryTerm}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(badge => {
+                        const badgeRow = document.createElement('tr');
+                        badgeRow.innerHTML = `
+                            <td>${badge.name}</td>
+                            <td>${badge.category}</td>
+                            <td><img src="${badge.imageUrl}" alt="${badge.name}"></td>
+                            <td><code class="markdown">${badge.markdown}</code></td>
+                        `;
+                        badgeResults.appendChild(badgeRow);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        } else {
+            fetch(`https://ryanthedev.vercel.app/api/badgegenerator/badgesearch?q=${searchTerm}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(badge => {
+                        const badgeRow = document.createElement('tr');
+                        badgeRow.innerHTML = `
+                            <td>${badge.name}</td>
+                            <td>${badge.category}</td>
+                            <td><img src="${badge.imageUrl}" alt="${badge.name}"></td>
+                            <td><code class="markdown">${badge.markdown}</code></td>
+                        `;
+                        badgeResults.appendChild(badgeRow);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    }
+});
+
+    </script>
+    </body>
+</html>
