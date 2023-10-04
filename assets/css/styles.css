@@ -1,23 +1,55 @@
+/* Make it responsive */
+@media screen and (max-width: 600px) {
+
+    /* Styles for screens smaller than 600px */
+    body {
+        font-size: 14px;
+        /* Decrease font size for smaller screens */
+    }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+
+    /* Styles for screens between 601px and 1024px */
+    body {
+        font-size: 16px;
+        /* Default font size */
+    }
+}
+
+@media screen and (min-width: 1025px) {
+
+    /* Styles for screens larger than 1024px */
+    body {
+        font-size: 18px;
+        /* Increase font size for larger screens */
+    }
+}
+
+
 /* Reset some default styles */
 body, h1, h2, h3, p {
     margin: 0;
     padding: 0;
 }
 
-h3, h4{
+h3, h4 {
     text-align: center;
 }
 
 /* Basic styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #0d1117; /* GitHub dark background color */
-    color: #c9d1d9; /* GitHub light text color */
-    margin:3px;
+    background-color: #0d1117;
+    /* GitHub dark background color */
+    color: #c9d1d9;
+    /* GitHub light text color */
+    margin: 3px;
 }
 
 header {
-    background-color: #161b22; /* GitHub dark header background color */
+    background-color: #161b22;
+    /* GitHub dark header background color */
     color: #c9d1d9;
     padding: 1em;
     display: flex;
@@ -36,16 +68,20 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #c9d1d9; /* GitHub link color */
+    color: #c9d1d9;
+    /* GitHub link color */
     text-decoration: none;
 }
+
 a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
+
 .hero {
     text-align: center;
     padding: 4em;
-    background-color: #161b22; /* GitHub dark background color */
+    background-color: #161b22;
+    /* GitHub dark background color */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -59,7 +95,8 @@ a:hover {
 .cta-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #58a6ff; /* GitHub link color */
+    background-color: #58a6ff;
+    /* GitHub link color */
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
@@ -68,7 +105,8 @@ a:hover {
 }
 
 .cta-button:hover {
-    background-color: #1f6feb; /* Slightly darker blue for hover */
+    background-color: #1f6feb;
+    /* Slightly darker blue for hover */
 }
 
 .search-container {
@@ -124,9 +162,12 @@ table th {
 /* Dropdown and input styles */
 select, input[type="text"], input[type="color"], checkbox {
     padding: 10px;
-    border: 1px solid #30363d; /* GitHub dark border color */
-    background-color: #0d1117; /* GitHub dark background color */
-    color: #c9d1d9; /* GitHub light text color */
+    border: 1px solid #30363d;
+    /* GitHub dark border color */
+    background-color: #0d1117;
+    /* GitHub dark background color */
+    color: #c9d1d9;
+    /* GitHub light text color */
     border-radius: 5px;
     width: 100%;
     font-size: 16px;
@@ -135,13 +176,15 @@ select, input[type="text"], input[type="color"], checkbox {
 }
 
 select:focus, input[type="text"]:focus, input[type="color"]:focus, checkbox:focus {
-    border-color: #58a6ff; /* GitHub link color */
+    border-color: #58a6ff;
+    /* GitHub link color */
 }
 
 /* Style the submit button */
 button[type="submit"] {
     padding: 10px 20px;
-    background-color: #58a6ff; /* GitHub link color */
+    background-color: #58a6ff;
+    /* GitHub link color */
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -151,7 +194,8 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #1f6feb; /* Slightly darker blue for hover */
+    background-color: #1f6feb;
+    /* Slightly darker blue for hover */
 }
 
 /* Dark mode dropdown styles */
@@ -203,7 +247,6 @@ input:focus {
 
 /* Dark mode label styles */
 label {
-    color: #c9d1d9; /* GitHub light text color */
+    color: #c9d1d9;
+    /* GitHub light text color */
 }
-
-
