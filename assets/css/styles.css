@@ -232,6 +232,8 @@ input {
     padding: 8px;
     border-radius: 6px;
     outline: none;
+    width: 90%;
+    margin: 0.5em 0;
 }
 
 /* Apply a hover effect */
