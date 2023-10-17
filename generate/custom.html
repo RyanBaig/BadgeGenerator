@@ -196,6 +196,11 @@ previewButton.addEventListener('click', function() {
         const bslabel = document.getElementById('bslabel').value;
         const bsstatus = document.getElementById('bsstatus').value;
         const bscolor = document.getElementById('bscolor').value;
+        
+        if (!bslabel || !bsstatus || !bscolor) {
+            alert('Please enter all required fields. (Label, Status, Color)');
+        }
+
 
         let badgeUrl = `https://badgers.space/badge/${bslabel}/${bsstatus}/${bscolor}`;
         const labelcolor = document.getElementById('bslabelcolor').value;
