@@ -196,7 +196,7 @@ previewButton.addEventListener('click', function() {
         const bslabel = document.getElementById('bslabel').value;
         const bsstatus = document.getElementById('bsstatus').value;
         const bscolor = document.getElementById('bscolor').value;
-        
+
         if (!bslabel || !bsstatus || !bscolor) {
             alert('Please enter all required fields. (Label, Status, Color)');
         }
@@ -209,7 +209,7 @@ previewButton.addEventListener('click', function() {
         const iconwidth = document.getElementById('bsiconwidth').value;
         const cache = document.getElementById('bscache').value;
         const icon = document.getElementById('bsicons').value;
-        const cornerradius = document.getElementById('bscornerradius')
+        const cornerradius = document.getElementById('bscornerradius').value;
 
         if (icon) badgeUrl += `?icon=${icon}`;
         if (labelcolor) badgeUrl += `&labelcolor=${labelcolor}`;
@@ -217,7 +217,7 @@ previewButton.addEventListener('click', function() {
         if (theme) badgeUrl += `&theme=${theme}`;
         if (iconwidth) badgeUrl += `&iconwidth=${iconwidth}`;
         if (cache) badgeUrl += `&cache=${cache}`;
-        if (cornerradius) badgeUrl += `&cornerradius=${cornerradius}`;
+        if (cornerradius) badgeUrl += `&corner_radius=${cornerradius}`;
 
         previewImage.src = badgeUrl;
     }
