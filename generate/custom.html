@@ -1,138 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../assets/css/styles.css">
-        <title>Custom Badge Generator</title>
-    </head>
-    <body>
-        <header>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <title>Custom Badge Generator</title>
+</head>
+
+<body>
+    <header>
         <div class="logo-container">
             <a href="/"><img src="/assets/images/logo.png" alt="BadgeGenerator Logo" width="100px" height="100px"></a>
         </div>
-            <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/profile_badges">Profile Badges</a></li>
-                    <li><a href="/generate_badge">Generate Badge</a></li>
-                    <li><a href="/about_us">About Us</a></li>
-                </ul>
-            </nav>
-        </header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/profile_badges">Profile Badges</a></li>
+                <li><a href="/generate_badge">Generate Badge</a></li>
+                <li><a href="/about">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <main>
-            <section class="badge-generator">
+    <main>
+        <section class="badge-generator">
 
-                <h2 style="text-align: center;">Custom Badge Generator</h2>
+            <h2 style="text-align: center;">Custom Badge Generator</h2>
 
 
-                <div style="text-align: center;" class="badge-preview">
-                    <h3>Badge Preview</h3>
-                    <button type="button" id="previewButton" class="cta-button">Preview
-                        Badge</button>
-                    <img id="previewImage" src="" alt="Badge Preview">
-                </div>
-                <!-- Provider -->
-                <form id="badgeForm">
-                    <label for="provider">Provider:</label>
-                    <select id="provider" name="provider">
-                        <option value="badgers.space">badgers.space</option>
-                        <option value="shields.io">shields.io</option>
+            <div style="text-align: center;" class="badge-preview">
+                <h3>Badge Preview</h3>
+                <button type="button" id="previewButton" class="cta-button">Preview
+                    Badge</button>
+                <img id="previewImage" src="" alt="Badge Preview">
+            </div>
+            <!-- Provider -->
+            <form id="badgeForm">
+                <label for="provider">Provider:</label>
+                <select id="provider" name="provider">
+                    <option value="badgers.space">badgers.space</option>
+                    <option value="shields.io">shields.io</option>
+                </select>
+                <!-- Shields IO-->
+                <div id="badgeTypeContainer" style="display: none;">
+                    <label for="badgeType">Badge Type:</label>
+                    <select id="badgeType" name="badgeType">
+                        <option value="color">1 Color</option>
+                        <option value="two-colors">Two Colors</option>
                     </select>
-                    <!-- Shields IO-->
-                    <div id="badgeTypeContainer" style="display: none;">
-                        <label for="badgeType">Badge Type:</label>
-                        <select id="badgeType" name="badgeType">
-                            <option value="color">1 Color</option>
-                            <option value="two-colors">Two Colors</option>
-                        </select>
+                </div>
+
+                <div id="badgeContentInput" style="display: none;">
+                    <label for="badgeContent">Badge Content:</label>
+                    <input type="text" id="badgeContent" name="badgeContent" placeholder="Text on logo side">
+                </div>
+                <div id="shieldsOnly" style="display: none;">
+                    <label for="label">Label:</label>
+                    <input type="text" id="label" name="label" placeholder="Text on color side">
+
+
+
+                    <label for="style">Style:</label>
+                    <select id="style" name="style">
+                        <option value="flat">Flat</option>
+                        <option value="flat-square">Flat Square</option>
+                        <option value="plastic">Plastic</option>
+                        <option value="for-the-badge">For the Badge</option>
+                        <option value="social">Social</option>
+                    </select>
+
+                    <div>
+                        <label for="logo">Logo:</label>
                     </div>
+                    <label>Get icon names from <a
+                            href="https://github.com/simple-icons/simple-icons/blob/master/slugs.md">Here.</a></label>
+                    <input type="text" id="logo" name="logo" placeholder="appveyor">
 
-                    <div id="badgeContentInput" style="display: none;">
-                        <label for="badgeContent">Badge Content:</label>
-                        <input type="text" id="badgeContent" name="badgeContent"
-                            placeholder="Text on logo side">
-                    </div>
-                    <div id="shieldsOnly" style="display: none;">
-                        <label for="label">Label:</label>
-                        <input type="text" id="label" name="label"
-                            placeholder="Text on color side">
+                    <label for="logoColor">Logo Color:</label>
+                    <input type="text" id="logoColor" name="logoColor" placeholder="logocolor">
 
+                    <label for="labelColor">Logo Background Color:</label>
+                    <input type="text" id="labelColor" name="labelColor"
+                        placeholder="The background color behind the logo">
+                    <label for="cacheSeconds">Cache Seconds:</label>
+                    <input type="number" id="cacheSeconds" name="cacheSeconds" placeholder="cacheseconds">
+                </div>
+                <div id="badgersSpaceOnly">
+                    <label for="bscolor">Badge Color:</label>
+                    <input type="text" id="bscolor" placeholder="The Color for the right side of the badge">
 
+                    <div><label for="bsicons">Logo:</label></div>
+                    <div><label>Find the Icon names <a href="https://badgers.space/icons">Here.</a></label></div>
+                    <input type="text" id="bsicons"
+                        placeholder="The Icon which appears on the left side of badge (gray area)">
 
-                        <label for="style">Style:</label>
-                        <select id="style" name="style">
-                            <option value="flat">Flat</option>
-                            <option value="flat-square">Flat Square</option>
-                            <option value="plastic">Plastic</option>
-                            <option value="for-the-badge">For the Badge</option>
-                            <option value="social">Social</option>
-                        </select>
+                    <label for="bslabel">Label:</label>
+                    <input id="bslabel" type="text"
+                        placeholder="The Text which appears on the right side of badge (colored area)">
 
-                        <div>
-                            <label for="logo">Logo:</label>
-                        </div>
-                        <label>Get icon names from <a
-                                href="https://github.com/simple-icons/simple-icons/blob/master/slugs.md">Here.</a></label>
-                        <input type="text" id="logo" name="logo"
-                            placeholder="appveyor">
+                    <label for="bsstatus">Status:</label>
+                    <input id="bsstatus" type="text"
+                        placeholder="The Text which appears on the left side of badge (gray area)">
 
-                        <label for="logoColor">Logo Color:</label>
-                        <input type="text" id="logoColor" name="logoColor"
-                            placeholder="logocolor">
+                    <label for="bslabelcolor">Label Color:</label>
+                    <input id="bslabelcolor" type="text"
+                        placeholder="The Color for label color on the right side of badge (colored area)">
 
-                        <label for="labelColor">Logo Background Color:</label>
-                        <input type="text" id="labelColor" name="labelColor"
-                            placeholder="The background color behind the logo">
-                        <label for="cacheSeconds">Cache Seconds:</label>
-                        <input type="number" id="cacheSeconds"
-                            name="cacheSeconds" placeholder="cacheseconds">
-                    </div>
-                    <div id="badgersSpaceOnly">
-                        <label for="bscolor">Badge Color:</label>
-                        <input type="text" id="bscolor" placeholder="The Color for the right side of the badge">
+                    <div><label for="bsscale">Badge Scale:</label></div>
+                    <input id="bsscale" type="number" placeholder="The Size of the Badge (default: 1)">
 
-                        <div><label for="bsicons">Logo:</label></div>
-                        <div><label>Find the Icon names <a
-                                    href="https://badgers.space/icons">Here.</a></label></div>
-                        <input type="text" id="bsicons" placeholder="The Icon which appears on the left side of badge (gray area)">
+                    <div><label for="bstheme">Badge Theme</label></div>
+                    <div><label>See Themes: <a href="https://honey.badgers.space/theme/honey">Honey</a>,
+                            <a href="https://honey.badgers.space/theme/tailwind">Tailwind</a>,
+                            and <a href="https://honey.badgers.space/theme/badgen">BadGen</a>.</label></div>
+                    <input id="bstheme" type="text" placeholder="The Theme of the Badge (default: Honey)">
 
-                        <label for="bslabel">Label:</label>
-                        <input id="bslabel" type="text" placeholder="The Text which appears on the right side of badge (colored area)">
+                    <div><label for="bsiconwidth">Icon Width:</label></div>
+                    <input id="bsiconwidth" type="number" placeholder="Width of the Icon">
 
-                        <label for="bsstatus">Status:</label>
-                        <input id="bsstatus" type="text" placeholder="The Text which appears on the left side of badge (gray area)">
+                    <div><label for="bscornerradius">Badge Corner Radius:</label></div>
+                    <input id="bscornerradius" type="number"
+                        placeholder="The factor which defines how rounded the corners are">
 
-                        <label for="bslabelcolor">Label Color:</label>
-                        <input id="bslabelcolor" type="text" placeholder="The Color for label color on the right side of badge (colored area)">
-
-                        <div><label for="bsscale">Badge Scale:</label></div>
-                        <input id="bsscale" type="number" placeholder="The Size of the Badge (default: 1)">
-
-                        <div><label for="bstheme">Badge Theme</label></div>
-                        <div><label>See Themes: <a
-                                    href="https://honey.badgers.space/theme/honey">Honey</a>,
-                                <a
-                                    href="https://honey.badgers.space/theme/tailwind">Tailwind</a>,
-                                and <a
-                                    href="https://honey.badgers.space/theme/badgen">BadGen</a>.</label></div>
-                        <input id="bstheme" type="text" placeholder="The Theme of the Badge (default: Honey)">
-
-                        <div><label for="bsiconwidth">Icon Width:</label></div>
-                        <input id="bsiconwidth" type="number" placeholder="Width of the Icon">
-
-                        <div><label for="bscornerradius">Badge Corner Radius:</label></div>
-                        <input id="bscornerradius" type="number"
-                            placeholder="The factor which defines how rounded the corners are">
-
-                        <div><label for="bscache">Cache Duration:</label></div>
-                        <input id="bscache" type="number" placeholder="The Cache">
-                    </div>
-                </form>
-            </section>
-        </main>
-        <script>
+                    <div><label for="bscache">Cache Duration:</label></div>
+                    <input id="bscache" type="number" placeholder="The Cache">
+                </div>
+            </form>
+        </section>
+    </main>
+    <script>
 const providerSelect = document.getElementById('provider');
 const badgeTypeContainer = document.getElementById('badgeTypeContainer');
 const badgeContentInput = document.getElementById('badgeContentInput');
@@ -226,7 +223,8 @@ previewButton.addEventListener('click', function() {
 });
 
 
-</script>
+    </script>
 
-    </body>
+</body>
+
 </html>

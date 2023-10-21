@@ -17,7 +17,7 @@ def favicon():
   return send_file('favicon.ico')
 
 
-@app.route('/about_us')
+@app.route('/about')
 def about():
   return render_template("about.html")
 
