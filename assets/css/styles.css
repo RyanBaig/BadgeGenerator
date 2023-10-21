@@ -26,6 +26,12 @@
     }
 }
 
+a {
+    color: #c9d1d9;
+    /* GitHub link color */
+    text-decoration: underline;
+}
+
 
 /* Reset some default styles */
 body, h1, h2, h3, p {
@@ -66,6 +72,8 @@ nav ul {
 nav ul li {
     margin-right: 20px;
 }
+
+
 
 nav ul li a {
     color: #c9d1d9;
@@ -251,4 +259,10 @@ input:focus {
 label {
     color: #c9d1d9;
     /* GitHub light text color */
+}
+
+.about-us {
+    align-items: center;
+    text-align: center;
+    margin: 10px;
 }

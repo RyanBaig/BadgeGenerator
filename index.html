@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/styles.css">
-    <title>Badge Generator</title>
+    <title>BadgeGenerator</title>
+    <link rel="stylesheet" href="/assets/css/styles.css"> <!-- Link to your CSS file -->
 </head>
-<body>
-    <header>
 
-        <h1>Badge Generator</h1>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/profile_badges">Profile Badges</a></li>
-                <li><a href="/generate_badge">Generate Badge</a></li>
-                <li><a href="/about_us">About Us</a></li>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <a href="/"><img src="/assets/images/logo.png" alt="BadgeGenerator Logo" width="100px" height="100px"></a>
+        </div>
+        <nav class="navbar">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="/">Home</a></li>
+                <li class="nav-item"><a href="/about">About Us</a></li>
+                <li class="nav-item"><a href="/profile_badges">Profile Badges</a></li>
+                <li class="nav-item"><a href="/generate_badge">Generate Badges</a></li>
             </ul>
         </nav>
-
     </header>
+
     <section class="hero">
-        <h2>Create Custom Badges</h2>
-        <p>Design and generate your own badges easily.</p>
+        <h1 style="margin: 10px;" class="hero-title">Welcome to BadgeGenerator</h1>
+        <p style="margin: 10px;" class="hero-description">Create stunning badges for your GitHub profile and repositories.</p>
+        <div style="margin: 10px;" class="cta-container">
+            <a class="cta-button" href="/profile_badges">Generate Profile Badges</a>
+            <a class="cta-button" href="/generate_badge">Generate Custom/Repository Badges</a>
         </div>
     </section>
-</div>
+
     
+    <footer class="footer">
+        <p style="text-align: center;" class="footer-text">&copy; 2023 BadgeGenerator. All rights reserved.</p>
+    </footer>
 </body>
+
 </html>
