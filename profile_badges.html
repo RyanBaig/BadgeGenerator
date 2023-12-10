@@ -132,7 +132,7 @@
             if (searchTerm.trim() !== '') {
                 if (searchTerm.startsWith('@c:')) {
                     const categoryTerm = searchTerm.replace('@c:', '').trim();
-                    fetch(`https://ryanthedev.vercel.app/api/badgegenerator/categorysearch?q=${categoryTerm}`)
+                    fetch(`https://api.ryanbaig.vercel.app/api/badgegenerator/categorysearch?q=${categoryTerm}`)
                         .then(response => response.json())
                         .then(data => {
                             data.forEach(badge => {
@@ -148,7 +148,7 @@
                         })
                         .catch(error => console.error('Error:', error));
                 } else {
-                    fetch(`https://ryanthedev.vercel.app/api/badgegenerator/badgesearch?q=${searchTerm}`)
+                    fetch(`https://api.ryanbaig.vercel.app/api/badgegenerator/badgesearch?q=${searchTerm}`)
                         .then(response => response.json())
                         .then(data => {
                             data.forEach(badge => {
