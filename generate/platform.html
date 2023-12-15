@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+
+    <title>Custom Badges Generator</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/"><img src="/assets/images/logo.png" alt="BadgeGenerator Logo" width="100px" height="100px"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/profile_badges">Profile Badges</a></li>
+                <li><a href="/generate_badge">Generate Badge</a></li>
+                <li><a href="/about">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="badge-generator">
+            <h2 style="text-align: center; margin-top: 5px;">Platform Badges Generator</h2>
+
+            <div style="text-align: center;" class="badge-preview">
+                <h3>Badge Preview</h3>
+                <table style="width: fit-content;">
+                    <tr>
+                <th><button type="button" id="previewButton" class="cta-button">Preview Badge</button></th>
+                <th><img id="previewImage" src="" alt="Badge Preview"></th>
+                <th><code id="previewURL" style="font-size: 15px;"></code></th>
+                </tr>
+                </table>
+            </div>
+            <!-- Provider -->
+            <form id="badgeForm">
+                <label for="provider">Provider:</label>
+                <select id="provider" name="provider">
+                    <option value="github">GitHub</option>
+                    <option value="crates.io">crates.io</option>
+                    <option value="npm">npm</option>
+                    <option value="pypi">PyPi</option>
+                </select>
+                <!-- GitHub Section -->
+                <div id="githubProvider">
+                    <label for="githubOption">GitHub Options:</label>
+                    <select id="githubOption" name="githubOption">
+                        <option value="latestRelease">Latest Release</option>
+                        <option value="issues">Total Issues</option>
+                        <option value="openIssues">Open Issues</option>
+                        <option value="closedIssues">Closed Issues</option>
+                        <option value="checks">Checks (Repository-specific)</option>
+                        <option value="checksBranch">Checks (Branch-specific)</option>
+                        <option value="contributors">Contributors</option>
+                        <option value="license">License</option>
+                    </select>
+
+                    <!-- GitHub-specific options -->
+                    <!-- Latest Release -->
+                    <div id="githubLatestRelease">
+                        <label for="owner">Owner:</label>
+                        <input type="text" id="ghlrowner" name="owner" placeholder="GitHub owner">
+                        <label for="repo">Repository:</label>
+                        <input type="text" id="ghlrrepo" name="repo" placeholder="GitHub repository">
+                    </div>
+                    <!-- GitHub Total Issues-->
+                    <div id="githubIssues" style="display: none;">
+                        <label for="owner">Owner:</label>
+                        <input type="text" id="ghiowner" name="owner" placeholder="GitHub owner">
+                        <label for="repo">Repository:</label>
+                        <input type="text" id="ghirepo" name="repo" placeholder="GitHub repository">
+                    </div>
+
+                    <!-- GitHub Open Issues -->
+                    <div id="githubOpenIssues" style="display: none;">
+                        <label for="owner">Owner:</label>
+                        <input type="text" id="ghoiowner" name="owner" placeholder="GitHub owner">
+                        <label for="repo">Repository:</label>
+                        <input type="text" id="ghoirepo" name="repo" placeholder="GitHub repository">
+                    </div>
+
+                    <!-- GitHub Closed Issues -->
+                    <div id="githubClosedIssues" style="display: none;">
+                        <label for="owner">Owner:</label>
+                        <input type="text" id="ghciowner" name="owner" placeholder="GitHub owner">
+                        <label for="repo">Repository:</label>
+                        <input type="text" id="ghcirepo" name="repo" placeholder="GitHub repository">
+                    </div>
+                    <!-- GitHub Checks (Repository-specific) -->
+                    <div id="githubChecks" style="display:none;">
+                        <label for="owner">Owner:</label>
+                        <input type="text" id="ghcowner" name="owner" placeholder="GitHub owner">
+                        <label for="repo">Repository:</label>
+                        <input type="text" id="ghcrepo" name="repo" placeholder="GitHub repository">
+                    </div>
+                    <!-- GitHub Checks (Branch-specific) -->
+                    <div id="githubChecksBranch" style="display:none;">
+                        <label for="owner">Owner:</label>
+                        <input type="text" id="ghcbowner" name="owner" placeholder="GitHub owner">
+                        <label for="repo">Repository:</label>
+                        <input type="text" id="ghcbrepo" name="repo" placeholder="GitHub repository">
+                        <label for="branch">Branch:</label>
+                        <input type="text" id="ghcbranch" name="branch" placeholder="GitHub branch">
+                    </div>
+
+                    <!-- GitHub Constributors -->
+                    <div id="githubContributors" style="display:none;">
+                        <label for="owner">Owner:</label>
+                        <input type="text" id="ghcontowner" name="owner" placeholder="GitHub owner">
+                        <label for="repo">Repository:</label>
+                        <input type="text" id="ghcontrepo" name="repo" placeholder="GitHub repository">
+                    </div>
+
+                    <!-- GitHub License -->
+                    <div id="githubLicense" style="display:none;">
+                        <label for="owner">Owner:</label>
+                        <input type="text" id="ghlowner" name="owner" placeholder="GitHub owner">
+                        <label for="repo">Repository:</label>
+                        <input type="text" id="ghlrepo" name="repo" placeholder="GitHub repository">
+                    </div>
+                </div>
+                <!-- crates.io Section-->
+                <div id="crates.ioProvider" style="display: none;">
+                    <label for="cratesIoOption">crates.io Options:</label>
+                    <select id="cratesIoOption" name="cratesIoOption">
+                        <option value="name">Crate Name</option>
+                        <option value="version">Crate Version</option>
+                        <option value="name&version">Crate Name & Version</option>
+                        <option value="downloads">Total Downloads</option>
+                        <option value="latestDownloads">Total Downloads (Latest Version)</option>
+                    </select>
+                    <!-- crates.io-specific Options -->
+                    <!-- crates.io Crate Name -->
+                    <div id="cratesIoName">
+                        <label for="cnname">Name:</label>
+                        <input type="text" id="cnname" name="name" placeholder="Crate Name">
+                    </div>
+                    <!-- crates.io Crate Version -->
+                    <div id="cratesIoVersion" style="display:none;">
+                        <label for="cnvname">Name:</label>
+                        <input type="text" id="cnvname" name="name" placeholder="Crate Name">
+                    </div>
+                    <!-- crates.io Crate Name + Version -->
+                    <div id="cratesIoName&Version" style="display:none;">
+                        <label for="cniname">Name:</label>
+                        <input type="text" id="cniname" name="name" placeholder="Crate Name">
+                    </div>
+                    <!-- crates.io Crate Downloads -->
+                    <div id="cratesIoDownloads" style="display:none;">
+                        <label for="cndname">Name:</label>
+                        <input type="text" id="cndname" name="name" placeholder="Crate Name">
+                    </div>
+                    <!-- crates.io Crate Downloads (Latest) -->
+                    <div id="cratesIoDownloadsLatest" style="display:none;">
+                        <label for="cndlname">Name:</label>
+                        <input type="text" id="cndlname" name="name" placeholder="Crate Name">
+                    </div>
+                </div>
+
+                <!-- npm Section -->
+                <div id="npmProvider" style="display: none;">
+
+                </div>
+                <!-- PyPi Section -->
+                <div id="pypiProvider" style="display: none;">
+
+                </div>
+            </form>
+        </section>
+    </main>
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/url_funcs.js"></script>
+</body>
+
+</html>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/styles.css">
-    <title>Custom Badge Generator</title>
+    <title>Custom Badges Generator</title>
 </head>
 
 <body>
@@ -34,6 +34,7 @@
                 <button type="button" id="previewButton" class="cta-button">Preview
                     Badge</button>
                 <img id="previewImage" src="" alt="Badge Preview">
+                <code id="previewURL" style="font-size: 15px;"></code>
             </div>
             <!-- Provider -->
             <form id="badgeForm">
@@ -111,9 +112,10 @@
                     <input id="bsscale" type="number" placeholder="The Size of the Badge (default: 1)">
 
                     <div><label for="bstheme">Badge Theme</label></div>
-                    <div><label>See Themes: <a href="https://honey.badgers.space/theme/honey">Honey</a>,
-                            <a href="https://honey.badgers.space/theme/tailwind">Tailwind</a>,
-                            and <a href="https://honey.badgers.space/theme/badgen">BadGen</a>.</label></div>
+                    <div><label>See Themes:</div>
+                    <div> Honey: <img src="https://honey.badgers.space/theme/honey">,</label></div>
+                    <div><label>Tailwind: <img src="https://honey.badgers.space/theme/tailwind">,</label></div>
+                    <div><label>and BadGen: <img src="https://honey.badgers.space/theme/badgen"></label></div>
                     <input id="bstheme" type="text" placeholder="The Theme of the Badge (default: Honey)">
 
                     <div><label for="bsiconwidth">Icon Width:</label></div>
@@ -130,99 +132,105 @@
         </section>
     </main>
     <script>
-const providerSelect = document.getElementById('provider');
-const badgeTypeContainer = document.getElementById('badgeTypeContainer');
-const badgeContentInput = document.getElementById('badgeContentInput');
-const shieldsOnlyFields = document.getElementById('shieldsOnly');
-const badgeTypeSelect = document.getElementById('badgeType');
-const previewButton = document.getElementById('previewButton');
-const previewImage = document.getElementById('previewImage');
-const badgeForm = document.getElementById('badgeForm');
-const badgersSpaceOnly = document.getElementById("badgersSpaceOnly");
+        const providerSelect = document.getElementById('provider');
+        const badgeTypeContainer = document.getElementById('badgeTypeContainer');
+        const badgeContentInput = document.getElementById('badgeContentInput');
+        const shieldsOnlyFields = document.getElementById('shieldsOnly');
+        const badgeTypeSelect = document.getElementById('badgeType');
+        const previewButton = document.getElementById('previewButton');
+        const previewImage = document.getElementById('previewImage');
+        const previewURL = document.getElementById('previewURL');
+        const badgeForm = document.getElementById('badgeForm');
+        const badgersSpaceOnly = document.getElementById("badgersSpaceOnly");
 
-providerSelect.addEventListener('change', function() {
-    if (providerSelect.value === 'shields.io') {
-        badgeTypeContainer.style.display = 'block';
-        badgeContentInput.style.display = badgeTypeSelect.value === 'two-colors' ? 'block' : 'none';
-        shieldsOnlyFields.style.display = 'block';
-        badgersSpaceOnly.style.display = "none";
-    } else if (providerSelect.value === 'badgers.space') {
-        badgeTypeContainer.style.display = 'none';
-        badgeContentInput.style.display = 'none';
-        shieldsOnlyFields.style.display = 'none';
-        badgersSpaceOnly.style.display = "block";
-    } else {
-        badgeTypeContainer.style.display = 'none';
-        badgeContentInput.style.display = 'none';
-        shieldsOnlyFields.style.display = 'none';
-        statusLabel.style.display = 'none'; // Show the status label
-        colorLabel.style.display = 'none'; // Show the color label
-        statusInput.style.display = 'none'; // Show the status input
-        colorInput.style.display = 'none'; // Show the color input
-}});
+        providerSelect.addEventListener('change', function () {
+            if (providerSelect.value === 'shields.io') {
+                badgeTypeContainer.style.display = 'block';
+                badgeContentInput.style.display = badgeTypeSelect.value === 'two-colors' ? 'block' : 'none';
+                shieldsOnlyFields.style.display = 'block';
+                badgersSpaceOnly.style.display = "none";
+            } else if (providerSelect.value === 'badgers.space') {
+                badgeTypeContainer.style.display = 'none';
+                badgeContentInput.style.display = 'none';
+                shieldsOnlyFields.style.display = 'none';
+                badgersSpaceOnly.style.display = "block";
+            } else {
+                badgeTypeContainer.style.display = 'none';
+                badgeContentInput.style.display = 'none';
+                shieldsOnlyFields.style.display = 'none';
+                statusLabel.style.display = 'none'; // Show the status label
+                colorLabel.style.display = 'none'; // Show the color label
+                statusInput.style.display = 'none'; // Show the status input
+                colorInput.style.display = 'none'; // Show the color input
+            }
+        });
 
-badgeTypeSelect.addEventListener('change', function() {
-    badgeContentInput.style.display = badgeTypeSelect.value === 'two-colors' ? 'block' : 'none';
-});
+        badgeTypeSelect.addEventListener('change', function () {
+            badgeContentInput.style.display = badgeTypeSelect.value === 'two-colors' ? 'block' : 'none';
+        });
 
-previewButton.addEventListener('click', function() {
-    const formData = new FormData(badgeForm);
-    const params = new URLSearchParams(formData);
-    params.delete('provider');
+        previewButton.addEventListener('click', function () {
+            const formData = new FormData(badgeForm);
+            const params = new URLSearchParams(formData);
+            params.delete('provider');
+            console.log(`FORMDATA: ${formData} && PARAMS: ${params}`)// How is the formdata/params var populated?
+        
 
-    const isShieldsIoProvider = providerSelect.value === 'shields.io';
-    const isBadgersSpaceProvider = providerSelect.value === 'badgers.space';
-    if (isShieldsIoProvider) {
-        let badgeUrl = `https://img.shields.io/badge/${params.get('badgeContent')}-${params.get('label')}-${params.get('color').replace('#', '')}`;
-        const style = params.get('style');
-        const logo = params.get('logo');
-        const logoColor = params.get('logoColor');
-        const labelColor = params.get('labelColor');
-        const cacheSeconds = params.get('cacheSeconds');
+            const isShieldsIoProvider = providerSelect.value === 'shields.io';
+            const isBadgersSpaceProvider = providerSelect.value === 'badgers.space';
+            if (isShieldsIoProvider) {
+                let badgeUrl =
+                    `https://img.shields.io/badge/${params.get('badgeContent')}-${params.get('label')}-${params.get('color').replace('#', '')}`;
+                const style = params.get('style');
+                const logo = params.get('logo');
+                const logoColor = params.get('logoColor');
+                const labelColor = params.get('labelColor');
+                const cacheSeconds = params.get('cacheSeconds');
 
-        if (style) badgeUrl += `?style=${style}`;
-        if (logo) badgeUrl += `&logo=${logo}`;
-        if (logoColor) badgeUrl += `&logoColor=${logoColor}`;
-        if (labelColor) badgeUrl += `&labelColor=${labelColor}`;
-        if (cacheSeconds) badgeUrl += `&cacheSeconds=${cacheSeconds}`;
+                if (style) badgeUrl += `?style=${style}`;
+                if (logo) badgeUrl += `&logo=${logo}`;
+                if (logoColor) badgeUrl += `&logoColor=${logoColor}`;
+                if (labelColor) badgeUrl += `&labelColor=${labelColor}`;
+                if (cacheSeconds) badgeUrl += `&cacheSeconds=${cacheSeconds}`;
 
-        if (badgeTypeSelect.value === 'two-colors') {
-            badgeUrl += `&color&color=${params.get('color')}`;
-        }
+                if (badgeTypeSelect.value === 'two-colors') {
+                    badgeUrl += `&color&color=${params.get('color')}`;
+                }
 
-        previewImage.src = badgeUrl;
-    } else if (isBadgersSpaceProvider) {
-        const bslabel = document.getElementById('bslabel').value;
-        const bsstatus = document.getElementById('bsstatus').value;
-        const bscolor = document.getElementById('bscolor').value;
+                previewImage.src = badgeUrl;
+                previewURL.innerHTML = badgeUrl;
 
-        if (!bslabel || !bsstatus || !bscolor) {
-            alert('Please enter all required fields. (Label, Status, Color)');
-        }
+            } else if (isBadgersSpaceProvider) {
+                const bslabel = document.getElementById('bslabel').value;
+                const bsstatus = document.getElementById('bsstatus').value;
+                const bscolor = document.getElementById('bscolor').value;
 
-
-        let badgeUrl = `https://badgers.space/badge/${bslabel}/${bsstatus}/${bscolor}`;
-        const labelcolor = document.getElementById('bslabelcolor').value;
-        const scale = document.getElementById('bsscale').value;
-        const theme = document.getElementById('bstheme').value;
-        const iconwidth = document.getElementById('bsiconwidth').value;
-        const cache = document.getElementById('bscache').value;
-        const icon = document.getElementById('bsicons').value;
-        const cornerradius = document.getElementById('bscornerradius').value;
-
-        if (icon) badgeUrl += `?icon=${icon}`;
-        if (labelcolor) badgeUrl += `&labelcolor=${labelcolor}`;
-        if (scale) badgeUrl += `&scale=${scale}`;
-        if (theme) badgeUrl += `&theme=${theme}`;
-        if (iconwidth) badgeUrl += `&iconwidth=${iconwidth}`;
-        if (cache) badgeUrl += `&cache=${cache}`;
-        if (cornerradius) badgeUrl += `&corner_radius=${cornerradius}`;
-
-        previewImage.src = badgeUrl;
-    }
-});
+                if (!bslabel || !bsstatus || !bscolor) {
+                    alert('Please enter all required fields. (Label, Status, Color)');
+                }
 
 
+                let badgeUrl = `https://badgers.space/badge/${bslabel}/${bsstatus}/${bscolor}`;
+                const labelcolor = document.getElementById('bslabelcolor').value;
+                const scale = document.getElementById('bsscale').value;
+                const theme = document.getElementById('bstheme').value;
+                const iconwidth = document.getElementById('bsiconwidth').value;
+                const cache = document.getElementById('bscache').value;
+                const icon = document.getElementById('bsicons').value;
+                const cornerradius = document.getElementById('bscornerradius').value;
+
+                if (icon) badgeUrl += `?icon=${icon}`;
+                if (labelcolor) badgeUrl += `&labelcolor=${labelcolor}`;
+                if (scale) badgeUrl += `&scale=${scale}`;
+                if (theme) badgeUrl += `&theme=${theme}`;
+                if (iconwidth) badgeUrl += `&iconwidth=${iconwidth}`;
+                if (cache) badgeUrl += `&cache=${cache}`;
+                if (cornerradius) badgeUrl += `&corner_radius=${cornerradius}`;
+
+                previewImage.src = badgeUrl;
+                previewURL.innerHTML = badgeUrl;
+            }
+        });
     </script>
 
 </body>
