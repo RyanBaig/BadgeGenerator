@@ -7,6 +7,7 @@ const pypiProvider = document.getElementById("pypiProvider");
 // OPTIONS
 const githubOption = document.getElementById("githubOption");
 const cratesIoOption = document.getElementById("cratesIoOption");
+const npmOption = document.getElementById("npmOption");
 // PREVIEW BUTTON
 const previewButton = document.getElementById("previewButton");
 
@@ -76,8 +77,30 @@ cratesIoOption.addEventListener("change", function () {
     document.getElementById("cratesIoName&Version").style.display = "block";
   } else if (selectedOption === "downloads") {
     document.getElementById("cratesIoDownloads").style.display = "block";
-  } else if (selectedOption === 'latestDownloads') {
-      document.getElementById("cratesIoDownloadsLatest").style.display = "block";
+  } else if (selectedOption === "latestDownloads") {
+    document.getElementById("cratesIoDownloadsLatest").style.display = "block";
+  }
+});
+
+npmOption.addEventListener("change", function () {
+  hideAllNpmOptions();
+  const selectedOption = npmOption.value;
+  if (selectedOption === "name") {
+    document.getElementById("npmName").style.display = "block";
+  } else if (selectedOption === "nameScoped") {
+    document.getElementById("npmNameScoped").style.display = "block";
+  } else if (selectedOption === "version") {
+    document.getElementById("npmVersion").style.display = "block";
+  } else if (selectedOption === "versionScoped") {
+    document.getElementById("npmVersionScoped").style.display = "block";
+  } else if (selectedOption === "license") {
+    document.getElementById("npmLicense").style.display = "block";
+  } else if (selectedOption === "licenseScoped") {
+    document.getElementById("npmLicenseScoped").style.display = "block";
+  } else if (selectedOption === "types") {
+    document.getElementById("npmTypes").style.display = "block";
+  } else if (selectedOption === "typesScoped") {
+    document.getElementById("npmTypesScoped").style.display = "block";
   }
 });
 
@@ -96,13 +119,26 @@ function hideAllCratesIoOptions() {
   document.getElementById("cratesIoName").style.display = "none";
   document.getElementById("cratesIoVersion").style.display = "none";
   document.getElementById("cratesIoName&Version").style.display = "none";
-    document.getElementById("cratesIoDownloads").style.display = "none";
+  document.getElementById("cratesIoDownloads").style.display = "none";
   document.getElementById("cratesIoDownloadsLatest").style.display = "none";
+}
+
+function hideAllNpmOptions() {
+  document.getElementById("npmName").style.display = "none";
+  document.getElementById("npmNameScoped").style.display = "none";
+  document.getElementById("npmVersion").style.display = "none";
+  document.getElementById("npmVersionScoped").style.display = "none";
+  document.getElementById("npmLicense").style.display = "none";
+  document.getElementById("npmLicenseScoped").style.display = "none";
+  document.getElementById("npmTypes").style.display = "none";
+  document.getElementById("npmTypesScoped").style.display = "none";
 }
 
 previewButton.addEventListener("click", function () {
   const GHselectedOption = githubOption.value;
   const CIOselectedOption = cratesIoOption.value;
+  const NPMselectedOption = npmOption.value;
+
 
   // Check the selected provider
   if (providerSelect.value === "github") {
@@ -146,9 +182,37 @@ previewButton.addEventListener("click", function () {
     } else if (CIOselectedOption === "downloads") {
       constructCIOURLDownloads();
       document.getElementById("cratesIoDownloads").style.display = "block";
-    } else if (CIOselectedOption === 'latestDownloads') {
-        constructCIOURLDownloadsLatest();
-        document.getElementById("cratesIoDownloadsLatest").style.display = "block";
+    } else if (CIOselectedOption === "latestDownloads") {
+      constructCIOURLDownloadsLatest();
+      document.getElementById("cratesIoDownloadsLatest").style.display =
+        "block";
+    }
+  } else if (providerSelect.value === "npm") {
+    // ---------- NPM ----------
+    if (NPMselectedOption === "name") {
+      constructNPMURLName();
+      document.getElementById("npmName").style.display = "block";
+    } else if (NPMselectedOption === "nameScoped") {
+      constructNPMURLNameScoped();
+      document.getElementById("npmNameScoped").style.display = "block";
+    } else if (NPMselectedOption === "version") {
+      constructNPMURLVersion();
+      document.getElementById("npmVersion").style.display = "block";
+    } else if (NPMselectedOption === "versionScoped") {
+      constructNPMURLVersionScoped();
+      document.getElementById("npmVersionScoped").style.display = "block";
+    } else if (NPMselectedOption === "license") {
+      constructNPMURLLicense();
+      document.getElementById("npmLicense").style.display = "block";
+    } else if (NPMselectedOption === "licenseScoped") {
+      constructNPMURLLicenseScoped();
+      document.getElementById("npmLicenseScoped").style.display = "block";
+    } else if (NPMselectedOption === "types") {
+      constructNPMURLTypes();
+      document.getElementById("npmTypes").style.display = "block";
+    } else if (NPMselectedOption === "typesScoped") {
+      constructNPMURLTypesScoped();
+      document.getElementById("npmTypesScoped").style.display = "block";
     }
   }
 });

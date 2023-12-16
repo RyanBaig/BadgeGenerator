@@ -34,7 +34,7 @@
                     <tr>
                         <th><button type="button" id="previewButton" class="cta-button">Preview Badge</button></th>
                         <th><img id="previewImage" src="" alt="Badge Preview"></th>
-                        <th><code id="previewURL" style="font-size: 15px;"></code></th>
+                        <th><code id="previewURL" style="font-size: 15px;">Badge URL</code></th>
                     </tr>
                 </table>
             </div>
@@ -165,7 +165,70 @@
 
                 <!-- npm Section -->
                 <div id="npmProvider" style="display: none;">
+                    <label for="npmOption">npm Options:</label>
+                    <select id="npmOption" name="npmOption">
+                        <option value="name">npm Package Name</option>
+                        <option value="nameScoped">npm Package Name (Scoped)</option>
+                        <option value="version">npm Package Version</option>
+                        <option value="versionScoped">npm Package Version (Scoped)</option>
+                        <option value="license">npm Package License</option>
+                        <option value="licenseScoped">npm Package License (Scoped)</option>
+                        <option value="types">npm Package Types</option>
+                        <option value="typesScoped">npm Package Types (Scoped)</option>
+                    </select>
 
+                    <!-- npm-Specific Options-->
+                    <!-- npm Package Name -->
+                    <div id="npmName">
+                        <label for="npmNName">Name:</label>
+                        <input type="text" id="npmNName" name="name" placeholder="Package Name">
+                    </div>
+                    <!-- npm Package Name (Scoped) -->
+                    <div id="npmNameScoped" style="display:none;">
+                        <label for="npmNOrgS">Organization:</label>
+                        <input type="text" id="npmNOrgS" name="name" placeholder="Organization Name">
+                        <label for="npmNNameS">Name:</label>
+                        <input type="text" id="npmNNameS" name="name" placeholder="Package Name">
+                        
+                    </div>
+                    <!-- npm Package Version -->
+                    <div id="npmVersion" style="display:none;">
+                        <label for="npmVName">Name:</label>
+                        <input type="text" id="npmVName" name="name" placeholder="Package Name">
+                    </div>
+                    <!-- npm Package Version (Scoped) -->
+                    <div id="npmVersionScoped" style="display:none;">
+                        <label for="npmVOrgS">Organization:</label>
+                        <input type="text" id="npmVOrgS" name="name" placeholder="Organization Name">
+                        <label for="npmVNameS">Name:</label>
+                        <input type="text" id="npmVNameS" name="name" placeholder="Package Name">
+                        
+                    </div>
+                    <!-- npm Package License -->
+                    <div id="npmLicense" style="display:none;">
+                        <label for="npmLName">Name:</label>
+                        <input type="text" id="npmLName" name="name" placeholder="Package Name">
+                    </div>
+                    <!-- npm Package License (Scoped) -->
+                    <div id="npmLicenseScoped" style="display:none;">
+                        <label for="npmLOrgS">Organization:</label>
+                        <input type="text" id="npmLOrgS" name="name" placeholder="Organization Name">
+                        <label for="npmLNameS">Name:</label>
+                        <input type="text" id="npmLNameS" name="name" placeholder="Package Name">
+                        
+                    </div>
+                    <!-- npm Package Types -->
+                    <div id="npmTypes" style="display:none;">
+                        <label for="npmTName">Name:</label>
+                        <input type="text" id="npmTName" name="name" placeholder="Package Name">
+                    </div>
+                    <!-- npm Package Types (Scoped) -->
+                    <div id="npmTypesScoped" style="display:none;">
+                        <label for="npmTOrgS">Organization:</label>
+                        <input type="text" id="npmTOrgS" name="name" placeholder="Organization Name">
+                        <label for="npmTNameS">Name:</label>
+                        <input type="text" id="npmTNameS" name="name" placeholder="Package Name">
+                    </div>
                 </div>
                 <!-- PyPi Section -->
                 <div id="pypiProvider" style="display: none;">

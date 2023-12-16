@@ -31,11 +31,11 @@
 
             <div style="text-align: center;" class="badge-preview">
                 <h3>Badge Preview</h3>
-                <table style="width: fit-content;">
+                <table id="previewTable" style="width: fit-content;">
                     <tr>
                         <th><button type="button" id="previewButton" class="cta-button">Preview Badge</button></th>
                         <th><img id="previewImage" src="" alt="Badge Preview"></th>
-                        <th><code id="previewURL" style="font-size: 15px;"></code></th>
+                        <th><code id="previewURL" style="font-size: 15px;">Badge URL</code></th>
                     </tr>
                 </table>
             </div>
@@ -210,7 +210,7 @@
 
                 if (!bslabel || !bsstatus || !bscolor) {
                     alert('Please enter all required fields. (Label, Status, Color)');
-                }
+                } else {
 
 
                 let badgeUrl = `https://badgers.space/badge/${bslabel}/${bsstatus}/${bscolor}`;
@@ -232,6 +232,7 @@
 
                 previewImage.src = badgeUrl;
                 previewURL.innerHTML = badgeUrl;
+                }
             }
         });
     </script>
