@@ -8,6 +8,7 @@ const pypiProvider = document.getElementById("pypiProvider");
 const githubOption = document.getElementById("githubOption");
 const cratesIoOption = document.getElementById("cratesIoOption");
 const npmOption = document.getElementById("npmOption");
+const pypiOption = document.getElementById("pypiOption");
 // PREVIEW BUTTON
 const previewButton = document.getElementById("previewButton");
 
@@ -104,6 +105,20 @@ npmOption.addEventListener("change", function () {
   }
 });
 
+pypiOption.addEventListener("change", function () {
+  hideAllPyPiOptions();
+  const selectedOption = pypiOption.value;
+  if (selectedOption === "name") {
+    document.getElementById("pypiName").style.display = "block";
+  } else if (selectedOption === "version") {
+    document.getElementById("pypiVersion").style.display = "block";
+  } else if (selectedOption === "name&version") {
+    document.getElementById("pypiName&Version").style.display = "block";
+  } else if (selectedOption === "license") {
+    document.getElementById("pypiLicense").style.display = "block";
+  }
+})
+
 function hideAllGitHubOptions() {
   document.getElementById("githubLatestRelease").style.display = "none";
   document.getElementById("githubIssues").style.display = "none";
@@ -134,15 +149,22 @@ function hideAllNpmOptions() {
   document.getElementById("npmTypesScoped").style.display = "none";
 }
 
+function hideAllPyPiOptions() {
+  document.getElementById("pypiName").style.display = "none";
+  document.getElementById("pypiVersion").style.display = "none";
+  document.getElementById("pypiName&Version").style.display = "none";
+  document.getElementById("pypiLicense").style.display = "none";
+}
+
 previewButton.addEventListener("click", function () {
   const GHselectedOption = githubOption.value;
   const CIOselectedOption = cratesIoOption.value;
   const NPMselectedOption = npmOption.value;
-
+  const PyPiselectedOption = pypiOption.value;
 
   // Check the selected provider
   if (providerSelect.value === "github") {
-    // ---------- GITHUB ----------
+    // ---------- GitHub ----------
     if (GHselectedOption === "latestRelease") {
       constructGitHubURLLatestRelease();
       document.getElementById("githubLatestRelease").style.display = "block";
@@ -169,7 +191,7 @@ previewButton.addEventListener("click", function () {
       document.getElementById("githubLicense").style.display = "block";
     }
   } else if (providerSelect.value === "crates.io") {
-    // ---------- CRATES.IO ----------
+    // ---------- crates.io ----------
     if (CIOselectedOption === "name") {
       constructCIOURLName();
       document.getElementById("cratesIoName").style.display = "block";
@@ -213,6 +235,21 @@ previewButton.addEventListener("click", function () {
     } else if (NPMselectedOption === "typesScoped") {
       constructNPMURLTypesScoped();
       document.getElementById("npmTypesScoped").style.display = "block";
+    }
+  } else if (providerSelect === "pypi") {
+    // ---------- PyPi ----------
+    if (PyPiselectedOption === "name") {
+      constructPyPiURLName();
+      document.getElementById("pypiName").style.display = "block";
+    } else if (PyPiselectedOption === "version") {
+      constructPyPiURLVersion();
+      document.getElementById("pypiVersion").style.display = "block";
+    } else if (PyPiselectedOption === "name&version") {
+      constructPyPiURLNameVersion();
+      document.getElementById("pypiName&Version").style.display = "block";
+    } else if (PyPiselectedOption === "license") {
+      constructPyPiURLLicense();
+      document.getElementById("pypiLicense").style.display = "block";
     }
   }
 });

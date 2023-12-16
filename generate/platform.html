@@ -189,7 +189,7 @@
                         <input type="text" id="npmNOrgS" name="name" placeholder="Organization Name">
                         <label for="npmNNameS">Name:</label>
                         <input type="text" id="npmNNameS" name="name" placeholder="Package Name">
-                        
+
                     </div>
                     <!-- npm Package Version -->
                     <div id="npmVersion" style="display:none;">
@@ -202,7 +202,7 @@
                         <input type="text" id="npmVOrgS" name="name" placeholder="Organization Name">
                         <label for="npmVNameS">Name:</label>
                         <input type="text" id="npmVNameS" name="name" placeholder="Package Name">
-                        
+
                     </div>
                     <!-- npm Package License -->
                     <div id="npmLicense" style="display:none;">
@@ -215,7 +215,7 @@
                         <input type="text" id="npmLOrgS" name="name" placeholder="Organization Name">
                         <label for="npmLNameS">Name:</label>
                         <input type="text" id="npmLNameS" name="name" placeholder="Package Name">
-                        
+
                     </div>
                     <!-- npm Package Types -->
                     <div id="npmTypes" style="display:none;">
@@ -232,7 +232,35 @@
                 </div>
                 <!-- PyPi Section -->
                 <div id="pypiProvider" style="display: none;">
-
+                    <label for="pypiOption">PyPi Options:</label>
+                    <select id="pypiOption" name="pypiOption">
+                        <option value="name">PyPi Package Name</option>
+                        <option value="version">PyPi Package Version</option>
+                        <option value="name&version">PyPi Package Name & Version</option>
+                        <option value="license">PyPi Package License</option>
+                    </select>
+                
+                <!-- PyPi-Specific Options -->
+                <!-- PyPi Package Name -->
+                <div id="pypiName">
+                    <label for="pypiNName">PyPi Package Name:</label>
+                    <input type="text" id="pypiNName" name="name" placeholder="PyPi Package Name">
+                </div>
+                <!-- PyPi Package Version -->
+                <div id="pypiVersion" style="display:none;">
+                    <label for="pypiVName">PyPi Package Name:</label>
+                    <input type="text" id="pypiVName" name="name" placeholder="PyPi Package Name">
+                </div>
+                <!-- PyPi Package Name & Version -->
+                <div id="pypiName&Version" style="display:none;">
+                    <label for="pypiNVName">PyPi Package Name:</label>
+                    <input type="text" id="pypiNVName" name="name" placeholder="PyPi Package Name">
+                </div>
+                <!-- PyPi Package License -->
+                <div id="pypiLicense" style="display:none;">
+                    <label for="pypiLName">PyPi Package Name:</label>
+                    <input type="text" id="pypiLName" name="name" placeholder="PyPi Package Name">
+                </div>
                 </div>
             </form>
         </section>

@@ -334,3 +334,46 @@ ______          ______   _
           __/ |            
          |___/             
  */
+function constructPyPiURLName() {
+  const name = document.getElementById("pypiNName").value;
+  if (!name) {
+    alert("Please fill the required fields: PyPi Package Name");
+  } else {
+    const badgeUrl = `https://badgers.space/pypi/name/${name}`;
+    document.getElementById("previewImage").src = badgeUrl;
+    document.getElementById("previewURL").innerHTML = badgeUrl;
+  }
+}
+
+function constructPyPiURLVersion() {
+  const name = document.getElementById("pypiVName").value;
+  if (!name) {
+    alert("Please fill the required fields: PyPi Package Name");
+  } else {
+    const badgeUrl = `https://badgers.space/pypi/version/${name}`;
+    document.getElementById("previewImage").src = badgeUrl;
+    document.getElementById("previewURL").innerHTML = badgeUrl;
+  }
+}
+
+function constructPyPiURLNameVersion() {
+  const name = document.getElementById("pypiNVName").value;
+  if (!name) {
+    alert("Please fill the required fields: PyPi Package Name");
+  } else {
+    const badgeUrl = `https://badgers.space/pypi/info/${name}`;
+    document.getElementById("previewImage").src = badgeUrl;
+    document.getElementById("previewURL").innerHTML = badgeUrl;
+  }
+}
+
+function constructPyPiURLLicense() {
+  const name = document.getElementById("pypiLName").value;
+  if (!name) {
+    alert("Please fill the required fields: PyPi Package Name");
+  } else {
+    const badgeUrl = `https://badgers.space/pypi/license/${name}`;
+    document.getElementById("previewImage").src = badgeUrl;
+    document.getElementById("previewURL").innerHTML = badgeUrl;
+  }
+}
