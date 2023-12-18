@@ -1,7 +1,11 @@
+$(document).ready(function () {
+  $(".Ryans-Dropdowns").select2();
+});
+
 const providerSelect = document.getElementById("provider");
 // PROVIDERS
 const githubProvider = document.getElementById("githubProvider");
-const cratesIoProvider = document.getElementById("crates.ioProvider");
+const cratesIoProvider = document.getElementById("cratesIoProvider");
 const npmProvider = document.getElementById("npmProvider");
 const pypiProvider = document.getElementById("pypiProvider");
 // OPTIONS
@@ -12,29 +16,19 @@ const pypiOption = document.getElementById("pypiOption");
 // PREVIEW BUTTON
 const previewButton = document.getElementById("previewButton");
 
-providerSelect.addEventListener("change", function () {
-  const selectedProvider = providerSelect.value;
+// Event listener for provider dropdown change
+$("#provider").on("change", function () {
+  const selectedProvider = $(this).val();
   hideAllProviders();
+
   if (selectedProvider === "github") {
-    githubProvider.style.display = "block";
-    cratesIoProvider.style.display = "none";
-    npmProvider.style.display = "none";
-    pypiProvider.style.display = "none";
+    $("#githubProvider").show();
   } else if (selectedProvider === "crates.io") {
-    githubProvider.style.display = "none";
-    cratesIoProvider.style.display = "block";
-    npmProvider.style.display = "none";
-    pypiProvider.style.display = "none";
+    $("#cratesIoProvider").show();
   } else if (selectedProvider === "npm") {
-    githubProvider.style.display = "none";
-    cratesIoProvider.style.display = "none";
-    npmProvider.style.display = "block";
-    pypiProvider.style.display = "none";
+    $("#npmProvider").show();
   } else if (selectedProvider === "pypi") {
-    githubProvider.style.display = "none";
-    cratesIoProvider.style.display = "none";
-    npmProvider.style.display = "none";
-    pypiProvider.style.display = "block";
+    $("#pypiProvider").show();
   }
 });
 
@@ -45,211 +39,211 @@ function hideAllProviders() {
   pypiProvider.style.display = "none";
 }
 
-githubOption.addEventListener("change", function () {
+$("#githubOption").on("change", function () {
   hideAllGitHubOptions();
-  const selectedOption = githubOption.value;
+  const selectedOption = $(this).val();
   if (selectedOption === "latestRelease") {
-    document.getElementById("githubLatestRelease").style.display = "block";
+    $("#githubLatestRelease").show();
   } else if (selectedOption === "issues") {
-    document.getElementById("githubIssues").style.display = "block";
+    $("#githubIssues").show();
   } else if (selectedOption === "openIssues") {
-    document.getElementById("githubOpenIssues").style.display = "block";
+    $("#githubOpenIssues").show();
   } else if (selectedOption === "closedIssues") {
-    document.getElementById("githubClosedIssues").style.display = "block";
+    $("#githubClosedIssues").show();
   } else if (selectedOption === "checks") {
-    document.getElementById("githubChecks").style.display = "block";
+    $("#githubChecks").show();
   } else if (selectedOption === "checksBranch") {
-    document.getElementById("githubChecksBranch").style.display = "block";
+    $("#githubChecksBranch").show();
   } else if (selectedOption === "contributors") {
-    document.getElementById("githubContributors").style.display = "block";
+    $("#githubContributors").show();
   } else if (selectedOption === "license") {
-    document.getElementById("githubLicense").style.display = "block";
+    $("#githubLicense").show();
   }
 });
 
-cratesIoOption.addEventListener("change", function () {
+$("#cratesIoOption").on("change", function () {
   hideAllCratesIoOptions();
-  const selectedOption = cratesIoOption.value;
+  const selectedOption = $(this).val();
   if (selectedOption === "name") {
-    document.getElementById("cratesIoName").style.display = "block";
+    $("#cratesIoName").show();
   } else if (selectedOption === "version") {
-    document.getElementById("cratesIoVersion").style.display = "block";
+    $("#cratesIoVersion").show();
   } else if (selectedOption === "name&version") {
-    document.getElementById("cratesIoName&Version").style.display = "block";
+    $("#cratesIoNameAndVersion").show();
   } else if (selectedOption === "downloads") {
-    document.getElementById("cratesIoDownloads").style.display = "block";
+    $("#cratesIoDownloads").show();
   } else if (selectedOption === "latestDownloads") {
-    document.getElementById("cratesIoDownloadsLatest").style.display = "block";
+    $("#cratesIoDownloadsLatest").show();
   }
 });
 
-npmOption.addEventListener("change", function () {
+$("#npmOption").on("change", function () {
   hideAllNpmOptions();
-  const selectedOption = npmOption.value;
+  const selectedOption = $(this).val();
   if (selectedOption === "name") {
-    document.getElementById("npmName").style.display = "block";
+    $("#npmName").show();
   } else if (selectedOption === "nameScoped") {
-    document.getElementById("npmNameScoped").style.display = "block";
+    $("#npmNameScoped").show();
   } else if (selectedOption === "version") {
-    document.getElementById("npmVersion").style.display = "block";
+    $("#npmVersion").show();
   } else if (selectedOption === "versionScoped") {
-    document.getElementById("npmVersionScoped").style.display = "block";
+    $("#npmVersionScoped").show();
   } else if (selectedOption === "license") {
-    document.getElementById("npmLicense").style.display = "block";
+    $("#npmLicense").show();
   } else if (selectedOption === "licenseScoped") {
-    document.getElementById("npmLicenseScoped").style.display = "block";
+    $("#npmLicenseScoped").show();
   } else if (selectedOption === "types") {
-    document.getElementById("npmTypes").style.display = "block";
+    $("#npmTypes").show();
   } else if (selectedOption === "typesScoped") {
-    document.getElementById("npmTypesScoped").style.display = "block";
+    $("#npmTypesScoped").show();
   }
 });
 
-pypiOption.addEventListener("change", function () {
+$("#pypiOption").on("change", function () {
   hideAllPyPiOptions();
-  const selectedOption = pypiOption.value;
+  const selectedOption = $(this).val();
   if (selectedOption === "name") {
-    document.getElementById("pypiName").style.display = "block";
+    $("#pypiName").show();
   } else if (selectedOption === "version") {
-    document.getElementById("pypiVersion").style.display = "block";
+    $("#pypiVersion").show();
   } else if (selectedOption === "name&version") {
-    document.getElementById("pypiName&Version").style.display = "block";
+    $("#pypiNameAndVersion").show();
   } else if (selectedOption === "license") {
-    document.getElementById("pypiLicense").style.display = "block";
+    $("#pypiLicense").show();
   }
-})
+});
 
 function hideAllGitHubOptions() {
-  document.getElementById("githubLatestRelease").style.display = "none";
-  document.getElementById("githubIssues").style.display = "none";
-  document.getElementById("githubOpenIssues").style.display = "none";
-  document.getElementById("githubClosedIssues").style.display = "none";
-  document.getElementById("githubChecks").style.display = "none";
-  document.getElementById("githubChecksBranch").style.display = "none";
-  document.getElementById("githubContributors").style.display = "none";
-  document.getElementById("githubLicense").style.display = "none";
+  $("#githubLatestRelease").hide();
+  $("#githubIssues").hide();
+  $("#githubOpenIssues").hide();
+  $("#githubClosedIssues").hide();
+  $("#githubChecks").hide();
+  $("#githubChecksBranch").hide();
+  $("#githubContributors").hide();
+  $("#githubLicense").hide();
 }
 
 function hideAllCratesIoOptions() {
-  document.getElementById("cratesIoName").style.display = "none";
-  document.getElementById("cratesIoVersion").style.display = "none";
-  document.getElementById("cratesIoName&Version").style.display = "none";
-  document.getElementById("cratesIoDownloads").style.display = "none";
-  document.getElementById("cratesIoDownloadsLatest").style.display = "none";
+  $("#cratesIoName").hide();
+  $("#cratesIoVersion").hide();
+  $("#cratesIoNameAndVersion").hide();
+  $("#cratesIoDownloads").hide();
+  $("#cratesIoDownloadsLatest").hide();
 }
 
 function hideAllNpmOptions() {
-  document.getElementById("npmName").style.display = "none";
-  document.getElementById("npmNameScoped").style.display = "none";
-  document.getElementById("npmVersion").style.display = "none";
-  document.getElementById("npmVersionScoped").style.display = "none";
-  document.getElementById("npmLicense").style.display = "none";
-  document.getElementById("npmLicenseScoped").style.display = "none";
-  document.getElementById("npmTypes").style.display = "none";
-  document.getElementById("npmTypesScoped").style.display = "none";
+  $("#npmName").hide();
+  $("#npmNameScoped").hide();
+  $("#npmVersion").hide();
+  $("#npmVersionScoped").hide();
+  $("#npmLicense").hide();
+  $("#npmLicenseScoped").hide();
+  $("#npmTypes").hide();
+  $("#npmTypesScoped").hide();
 }
 
 function hideAllPyPiOptions() {
-  document.getElementById("pypiName").style.display = "none";
-  document.getElementById("pypiVersion").style.display = "none";
-  document.getElementById("pypiName&Version").style.display = "none";
-  document.getElementById("pypiLicense").style.display = "none";
+  $("#pypiName").hide();
+  $("#pypiVersion").hide();
+  $("#pypiNameAndVersion").hide();
+  $("#pypiLicense").hide();
 }
 
-previewButton.addEventListener("click", function () {
-  const GHselectedOption = githubOption.value;
-  const CIOselectedOption = cratesIoOption.value;
-  const NPMselectedOption = npmOption.value;
-  const PyPiselectedOption = pypiOption.value;
+$("#previewButton").on("click", function () {
+  const GHselectedOption = $("#githubOption").val();
+  const CIOselectedOption = $("#cratesIoOption").val();
+  const NPMselectedOption = $("#npmOption").val();
+  const PyPiselectedOption = $("#pypiOption").val();
 
-  // Check the selected provider
-  if (providerSelect.value === "github") {
+  const selectedProvider = $("#provider").val();
+
+  if (selectedProvider === "github") {
     // ---------- GitHub ----------
     if (GHselectedOption === "latestRelease") {
       constructGitHubURLLatestRelease();
-      document.getElementById("githubLatestRelease").style.display = "block";
+      $("#githubLatestRelease").show();
     } else if (GHselectedOption === "issues") {
       constructGitHubURLIssues();
-      document.getElementById("githubIssues").style.display = "block";
+      $("#githubIssues").show();
     } else if (GHselectedOption === "openIssues") {
       constructGitHubURLOpenIssues();
-      document.getElementById("githubOpenIssues").style.display = "block";
+      $("#githubOpenIssues").show();
     } else if (GHselectedOption === "closedIssues") {
       constructGitHubURLClosedIssues();
-      document.getElementById("githubClosedIssues").style.display = "block";
+      $("#githubClosedIssues").show();
     } else if (GHselectedOption === "checks") {
       constructGitHubURLChecks();
-      document.getElementById("githubChecks").style.display = "block";
+      $("#githubChecks").show();
     } else if (GHselectedOption === "checksBranch") {
       constructGitHubURLChecksBranch();
-      document.getElementById("githubChecksBranch").style.display = "block";
+      $("#githubChecksBranch").show();
     } else if (GHselectedOption === "contributors") {
       constructGitHubURLContributors();
-      document.getElementById("githubContributors").style.display = "block";
+      $("#githubContributors").show();
     } else if (GHselectedOption === "license") {
       constructGitHubURLLicense();
-      document.getElementById("githubLicense").style.display = "block";
+      $("#githubLicense").show();
     }
-  } else if (providerSelect.value === "crates.io") {
+  } else if (selectedProvider === "crates.io") {
     // ---------- crates.io ----------
     if (CIOselectedOption === "name") {
       constructCIOURLName();
-      document.getElementById("cratesIoName").style.display = "block";
+      $("#cratesIoName").show();
     } else if (CIOselectedOption === "version") {
       constructCIOURLVersion();
-      document.getElementById("cratesIoVersion").style.display = "block";
+      $("#cratesIoVersion").show();
     } else if (CIOselectedOption === "name&version") {
       constructCIOURLNameAndVersion();
-      document.getElementById("cratesIoName&Version").style.display = "block";
+      $("#cratesIoNameAndVersion").show();
     } else if (CIOselectedOption === "downloads") {
       constructCIOURLDownloads();
-      document.getElementById("cratesIoDownloads").style.display = "block";
+      $("#cratesIoDownloads").show();
     } else if (CIOselectedOption === "latestDownloads") {
       constructCIOURLDownloadsLatest();
-      document.getElementById("cratesIoDownloadsLatest").style.display =
-        "block";
+      $("#cratesIoDownloadsLatest").show();
     }
-  } else if (providerSelect.value === "npm") {
+  } else if (selectedProvider === "npm") {
     // ---------- NPM ----------
     if (NPMselectedOption === "name") {
       constructNPMURLName();
-      document.getElementById("npmName").style.display = "block";
+      $("#npmName").show();
     } else if (NPMselectedOption === "nameScoped") {
       constructNPMURLNameScoped();
-      document.getElementById("npmNameScoped").style.display = "block";
+      $("#npmNameScoped").show();
     } else if (NPMselectedOption === "version") {
       constructNPMURLVersion();
-      document.getElementById("npmVersion").style.display = "block";
+      $("#npmVersion").show();
     } else if (NPMselectedOption === "versionScoped") {
       constructNPMURLVersionScoped();
-      document.getElementById("npmVersionScoped").style.display = "block";
+      $("#npmVersionScoped").show();
     } else if (NPMselectedOption === "license") {
       constructNPMURLLicense();
-      document.getElementById("npmLicense").style.display = "block";
+      $("#npmLicense").show();
     } else if (NPMselectedOption === "licenseScoped") {
       constructNPMURLLicenseScoped();
-      document.getElementById("npmLicenseScoped").style.display = "block";
+      $("#npmLicenseScoped").show();
     } else if (NPMselectedOption === "types") {
       constructNPMURLTypes();
-      document.getElementById("npmTypes").style.display = "block";
+      $("#npmTypes").show();
     } else if (NPMselectedOption === "typesScoped") {
       constructNPMURLTypesScoped();
-      document.getElementById("npmTypesScoped").style.display = "block";
+      $("#npmTypesScoped").show();
     }
-  } else if (providerSelect === "pypi") {
+  } else if (selectedProvider === "pypi") {
     // ---------- PyPi ----------
     if (PyPiselectedOption === "name") {
       constructPyPiURLName();
-      document.getElementById("pypiName").style.display = "block";
+      $("#pypiName").show();
     } else if (PyPiselectedOption === "version") {
       constructPyPiURLVersion();
-      document.getElementById("pypiVersion").style.display = "block";
+      $("#pypiVersion").show();
     } else if (PyPiselectedOption === "name&version") {
       constructPyPiURLNameVersion();
-      document.getElementById("pypiName&Version").style.display = "block";
+      $("#pypiNameAndVersion").show();
     } else if (PyPiselectedOption === "license") {
       constructPyPiURLLicense();
-      document.getElementById("pypiLicense").style.display = "block";
+      $("#pypiLicense").show();
     }
   }
 });

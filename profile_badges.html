@@ -4,46 +4,78 @@
 <head>
     <title>Badge Search</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <header>
-        <div class="logo-container">
-            <a href="/"><img src="/assets/images/logo.png" alt="BadgeGenerator Logo" width="100px" height="100px"></a>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="/assets/images/logo-small.png" width="50px" height="50px">
+                BadgeGenerator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/profile_badges.html">Profile Badges</a>
+                    </li>
+                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Generate Badges
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="/generate_badge.html">Home</a></li>
+                                    <li><a class="dropdown-item" href="/generate/custom.html">Generate Custom Badges</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="/generate/platform.html">Generate Platform
+                                            Badges</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
         </div>
-
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/profile_badges">Profile Badges</a></li>
-                <li><a href="/generate_badge">Generate Badge</a></li>
-                <li><a href="/about">About Us</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="hero">
+    </nav>
+    <div class="hero text-center">
         <h2>Search for Badges</h2>
-        <h3>Huge Credit to <a href="https://github.com/Ileriayo/markdown-badges/">Ileriayo</a>
-            & <a href="https://github.com/Envoy-VC/awesome-badges">Envoy VC</a> for the Badges!</h3>
+        <h3>Huge Credit to <a class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="https://github.com/Ileriayo/markdown-badges/">Ileriayo</a>
+            & <a class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="https://github.com/Envoy-VC/awesome-badges">Envoy VC</a> for the Badges!</h3>
         <h4>Tip: Use <code>@c:</code> before your query to search
             for categories!</h4>
         <details>
             <summary>👇 How to use a different badge style</summary>
             <hr>
 
-            <blockquote> <strong>Note:</strong> <code>for-the-badge</code>
+            <blockquote class="blockquote"><p> <strong>Note:</strong> <code>for-the-badge</code>
                 is the style that we chose for appearance purposes. Other
-                styles are available at <a href="https://shields.io/#styles">https://shields.io/#styles</a>
+                styles are available at <a class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="https://shields.io/#styles">https://shields.io/#styles</a>
                 and can be used with the badges here. Thanks, @kingthorin
-                for mentioning this!</blockquote>
+                for mentioning this!</p></blockquote>
 
 
-            <table>
+            <table class="table">
                 <tr>
-                    <th>S/N</th>
-                    <th>Types</th>
-                    <th>Styles</th>
-                    <th>Markdown</th>
+                    <th scope="col">S/N</th>
+                    <th scope="col">Types</th>
+                    <th scope="col">Styles</th>
+                    <th scope="col">Markdown</th>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -105,10 +137,10 @@
 
     </div>
     <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search for badges...">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search for badges...">
     </div>
     <div id="badgeResults">
-        <table>
+        <table class="table">
             <thead>
                 <tr>
                     <th>Name</th>

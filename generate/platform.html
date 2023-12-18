@@ -4,53 +4,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <style>
+        .select2-search__field {
+        width: 100% !important; /* Adjust width as needed */
+        padding: 0.375rem 0.75rem; /* Bootstrap form-control padding */
+        font-size: 1rem; /* Bootstrap form-control font-size */
+        line-height: 1.5; /* Bootstrap form-control line-height */
+        color: #495057; /* Bootstrap form-control text color */
+        background-color: #fff; /* Bootstrap form-control background color */
+        background-clip: padding-box;
+        border: 1px solid #ced4da; /* Bootstrap form-control border color */
+        border-radius: 0.25rem; /* Bootstrap form-control border-radius */
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
 
+        /* Optional: Add focus styles */
+        .select2-search__field:focus {
+        border-color: #80bdff; /* Bootstrap form-control border color on focus */
+        outline: 0; /* Remove the default focus outline */
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Bootstrap form-control focus shadow */
+        }
+    </style>
     <title>Custom Badges Generator</title>
 </head>
 
 <body>
-    <header>
-        <div class="logo-container">
-            <a href="/"><img src="/assets/images/logo.png" alt="BadgeGenerator Logo" width="100px" height="100px"></a>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="/assets/images/logo-small.png" width="50px" height="50px">
+                BadgeGenerator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile_badges.html">Profile Badges</a>
+                    </li>
+                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                        <ul class="navbar-nav nav-item">
+                            <li class="nav-item dropdown">
+                                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Generate Badges
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="/generate_badge.html">Home</a></li>
+                                    <li><a class="dropdown-item" href="/generate/custom.html">Generate Custom Badges</a>
+                                    </li>
+                                    <li><a class="dropdown-item active" aria-current="page"
+                                            href="/generate/platform.html">Generate Platform Badges</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/profile_badges">Profile Badges</a></li>
-                <li><a href="/generate_badge">Generate Badge</a></li>
-                <li><a href="/about">About Us</a></li>
-            </ul>
-        </nav>
-    </header>
-
+    </nav>
     <main>
         <section class="badge-generator">
             <h2 style="text-align: center; margin-top: 5px;">Platform Badges Generator</h2>
 
-            <div style="text-align: center;" class="badge-preview">
+            <div class="badge-preview text-center">
                 <h3>Badge Preview</h3>
-                <table style="width: fit-content;">
+
+                <table class="table" style="  margin-left: auto;
+  margin-right: auto;">
                     <tr>
-                        <th><button type="button" id="previewButton" class="cta-button">Preview Badge</button></th>
+                        <th><button type="button" id="previewButton" class="btn btn-primary">Preview Badge</button></th>
                         <th><img id="previewImage" src="" alt="Badge Preview"></th>
                         <th><code id="previewURL" style="font-size: 15px;">Badge URL</code></th>
                     </tr>
                 </table>
+
             </div>
             <!-- Provider -->
             <form id="badgeForm">
                 <label for="provider">Provider:</label>
-                <select id="provider" name="provider">
+                <select id="provider" class="Ryans-Dropdowns" name="provider">
                     <option value="github">GitHub</option>
                     <option value="crates.io">crates.io</option>
                     <option value="npm">npm</option>
                     <option value="pypi">PyPi</option>
                 </select>
                 <!-- GitHub Section -->
-                <div id="githubProvider">
+                <div id="githubProvider" class="mt-3">
                     <label for="githubOption">GitHub Options:</label>
-                    <select id="githubOption" name="githubOption">
+                    <select class="Ryans-Dropdowns" id="githubOption" name="githubOption">
                         <option value="latestRelease">Latest Release</option>
                         <option value="issues">Total Issues</option>
                         <option value="openIssues">Open Issues</option>
@@ -59,76 +117,131 @@
                         <option value="checksBranch">Checks (Branch-specific)</option>
                         <option value="contributors">Contributors</option>
                         <option value="license">License</option>
-                    </select>
+                    </select><br>
 
                     <!-- GitHub-specific options -->
                     <!-- Latest Release -->
                     <div id="githubLatestRelease">
-                        <label for="owner">Owner:</label>
-                        <input type="text" id="ghlrowner" name="owner" placeholder="GitHub owner">
-                        <label for="repo">Repository:</label>
-                        <input type="text" id="ghlrrepo" name="repo" placeholder="GitHub repository">
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="text" class="form-control" id="ghlrowner" name="owner"
+                                placeholder="GitHub owner">
+                            <label for="owner">Owner</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="ghlrrepo" name="repo"
+                                placeholder="GitHub repository">
+                            <label for="repo">Repository</label>
+                        </div>
                     </div>
-                    <!-- GitHub Total Issues-->
+
+                    <!-- GitHub Total Issues -->
                     <div id="githubIssues" style="display: none;">
-                        <label for="owner">Owner:</label>
-                        <input type="text" id="ghiowner" name="owner" placeholder="GitHub owner">
-                        <label for="repo">Repository:</label>
-                        <input type="text" id="ghirepo" name="repo" placeholder="GitHub repository">
+                        <div class="form-floating mb-3 mt-3">
+                            <input type="text" class="form-control" id="ghiowner" name="owner"
+                                placeholder="GitHub owner">
+                            <label for="ghiowner">Owner</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="ghirepo" name="repo"
+                                placeholder="GitHub repository">
+                            <label for="ghirepo">Repository</label>
+                        </div>
                     </div>
+
 
                     <!-- GitHub Open Issues -->
                     <div id="githubOpenIssues" style="display: none;">
-                        <label for="owner">Owner:</label>
-                        <input type="text" id="ghoiowner" name="owner" placeholder="GitHub owner">
-                        <label for="repo">Repository:</label>
-                        <input type="text" id="ghoirepo" name="repo" placeholder="GitHub repository">
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="text" class="form-control" id="ghoiowner" name="owner"
+                                placeholder="GitHub owner">
+                            <label for="ghoiowner">Owner</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="ghoirepo" name="repo"
+                                placeholder="GitHub repository">
+                            <label for="ghoirepo">Repository</label>
+                        </div>
                     </div>
+
 
                     <!-- GitHub Closed Issues -->
                     <div id="githubClosedIssues" style="display: none;">
-                        <label for="owner">Owner:</label>
-                        <input type="text" id="ghciowner" name="owner" placeholder="GitHub owner">
-                        <label for="repo">Repository:</label>
-                        <input type="text" id="ghcirepo" name="repo" placeholder="GitHub repository">
-                    </div>
-                    <!-- GitHub Checks (Repository-specific) -->
-                    <div id="githubChecks" style="display:none;">
-                        <label for="owner">Owner:</label>
-                        <input type="text" id="ghcowner" name="owner" placeholder="GitHub owner">
-                        <label for="repo">Repository:</label>
-                        <input type="text" id="ghcrepo" name="repo" placeholder="GitHub repository">
-                    </div>
-                    <!-- GitHub Checks (Branch-specific) -->
-                    <div id="githubChecksBranch" style="display:none;">
-                        <label for="owner">Owner:</label>
-                        <input type="text" id="ghcbowner" name="owner" placeholder="GitHub owner">
-                        <label for="repo">Repository:</label>
-                        <input type="text" id="ghcbrepo" name="repo" placeholder="GitHub repository">
-                        <label for="branch">Branch:</label>
-                        <input type="text" id="ghcbranch" name="branch" placeholder="GitHub branch">
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="text" class="form-control" id="ghciowner" name="owner"
+                                placeholder="GitHub owner">
+                            <label for="ghciowner">Owner</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="ghcirepo" name="repo"
+                                placeholder="GitHub repository">
+                            <label for="ghcirepo">Repository</label>
+                        </div>
                     </div>
 
-                    <!-- GitHub Constributors -->
-                    <div id="githubContributors" style="display:none;">
-                        <label for="owner">Owner:</label>
-                        <input type="text" id="ghcontowner" name="owner" placeholder="GitHub owner">
-                        <label for="repo">Repository:</label>
-                        <input type="text" id="ghcontrepo" name="repo" placeholder="GitHub repository">
+                    <!-- GitHub Checks (Repository-specific) -->
+                    <div id="githubChecks" style="display: none;">
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="text" class="form-control" id="ghcowner" name="owner"
+                                placeholder="GitHub owner">
+                            <label for="ghcowner">Owner</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="ghcrepo" name="repo"
+                                placeholder="GitHub repository">
+                            <label for="ghcrepo">Repository</label>
+                        </div>
+                    </div>
+                    <!-- GitHub Checks (Branch-specific) -->
+                    <div id="githubChecksBranch" style="display: none;">
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="text" class="form-control" id="ghcbowner" name="owner"
+                                placeholder="GitHub owner">
+                            <label for="ghcbowner">Owner</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="ghcbrepo" name="repo"
+                                placeholder="GitHub repository">
+                            <label for="ghcbrepo">Repository</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="ghcbranch" name="branch"
+                                placeholder="GitHub branch">
+                            <label for="ghcbranch">Branch</label>
+                        </div>
+                    </div>
+
+
+                    <!-- GitHub Contributors -->
+                    <div id="githubContributors" style="display: none;">
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="text" class="form-control" id="ghcontowner" name="owner"
+                                placeholder="GitHub owner">
+                            <label for="ghcontowner">Owner</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="ghcontrepo" name="repo"
+                                placeholder="GitHub repository">
+                            <label for="ghcontrepo">Repository</label>
+                        </div>
                     </div>
 
                     <!-- GitHub License -->
-                    <div id="githubLicense" style="display:none;">
-                        <label for="owner">Owner:</label>
-                        <input type="text" id="ghlowner" name="owner" placeholder="GitHub owner">
-                        <label for="repo">Repository:</label>
-                        <input type="text" id="ghlrepo" name="repo" placeholder="GitHub repository">
+                    <div id="githubLicense" style="display: none;">
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="text" class="form-control" id="ghlowner" name="owner" placeholder="GitHub owner">
+                            <label for="ghlowner">Owner</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="ghlrepo" name="repo" placeholder="GitHub repository">
+                            <label for="ghlrepo">Repository</label>
+                        </div>
                     </div>
+
                 </div>
                 <!-- crates.io Section-->
-                <div id="crates.ioProvider" style="display: none;">
+                <div id="cratesIoProvider" class="mt-3" style="display: none;">
                     <label for="cratesIoOption">crates.io Options:</label>
-                    <select id="cratesIoOption" name="cratesIoOption">
+                    <select class="Ryans-Dropdowns" id="cratesIoOption" name="cratesIoOption">
                         <option value="name">Crate Name</option>
                         <option value="version">Crate Version</option>
                         <option value="name&version">Crate Name & Version</option>
@@ -138,129 +251,184 @@
                     <!-- crates.io-specific Options -->
                     <!-- crates.io Crate Name -->
                     <div id="cratesIoName">
-                        <label for="cnname">Name:</label>
-                        <input type="text" id="cnname" name="name" placeholder="Crate Name">
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="text" class="form-control" id="cnname" name="name" placeholder="Crate Name">
+                            <label for="cnname">Name</label>
+                        </div>
                     </div>
+                    
                     <!-- crates.io Crate Version -->
                     <div id="cratesIoVersion" style="display:none;">
-                        <label for="cnvname">Name:</label>
-                        <input type="text" id="cnvname" name="name" placeholder="Crate Name">
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="text" class="form-control" id="cnvname" name="name" placeholder="Crate Name">
+                            <label for="cnvname">Name</label>
+                        </div>
                     </div>
+                    
                     <!-- crates.io Crate Name + Version -->
-                    <div id="cratesIoName&Version" style="display:none;">
-                        <label for="cniname">Name:</label>
-                        <input type="text" id="cniname" name="name" placeholder="Crate Name">
+                    <div id="cratesIoNameAndVersion" style="display:none;">
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="text" class="form-control" id="cniname" name="name" placeholder="Crate Name">
+                            <label for="cniname">Name</label>
+                        </div>
                     </div>
+                    
                     <!-- crates.io Crate Downloads -->
                     <div id="cratesIoDownloads" style="display:none;">
-                        <label for="cndname">Name:</label>
-                        <input type="text" id="cndname" name="name" placeholder="Crate Name">
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="text" class="form-control" id="cndname" name="name" placeholder="Crate Name">
+                            <label for="cndname">Name</label>
+                        </div>
                     </div>
+                    
                     <!-- crates.io Crate Downloads (Latest) -->
                     <div id="cratesIoDownloadsLatest" style="display:none;">
-                        <label for="cndlname">Name:</label>
-                        <input type="text" id="cndlname" name="name" placeholder="Crate Name">
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="text" class="form-control" id="cndlname" name="name" placeholder="Crate Name">
+                            <label for="cndlname">Name</label>
+                        </div>
                     </div>
+
                 </div>
 
                 <!-- npm Section -->
                 <div id="npmProvider" style="display: none;">
-                    <label for="npmOption">npm Options:</label>
-                    <select id="npmOption" name="npmOption">
-                        <option value="name">npm Package Name</option>
-                        <option value="nameScoped">npm Package Name (Scoped)</option>
-                        <option value="version">npm Package Version</option>
-                        <option value="versionScoped">npm Package Version (Scoped)</option>
-                        <option value="license">npm Package License</option>
-                        <option value="licenseScoped">npm Package License (Scoped)</option>
-                        <option value="types">npm Package Types</option>
-                        <option value="typesScoped">npm Package Types (Scoped)</option>
+                    <label for="npmOption" class="mt-3">npm Options:</label>
+                    <select class="Ryans-Dropdowns" id="npmOption" name="npmOption">
+                        <option value="name">Package Name</option>
+                        <option value="nameScoped">Package Name (Scoped)</option>
+                        <option value="version">Package Version</option>
+                        <option value="versionScoped">Package Version (Scoped)</option>
+                        <option value="license">Package License</option>
+                        <option value="licenseScoped">Package License (Scoped)</option>
+                        <option value="types">Package Types</option>
+                        <option value="typesScoped">Package Types (Scoped)</option>
                     </select>
 
-                    <!-- npm-Specific Options-->
                     <!-- npm Package Name -->
                     <div id="npmName">
-                        <label for="npmNName">Name:</label>
-                        <input type="text" id="npmNName" name="name" placeholder="Package Name">
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="text" class="form-control" id="npmNName" name="name" placeholder="Package Name">
+                            <label for="npmNName">Name</label>
+                        </div>
                     </div>
+                    
                     <!-- npm Package Name (Scoped) -->
                     <div id="npmNameScoped" style="display:none;">
-                        <label for="npmNOrgS">Organization:</label>
-                        <input type="text" id="npmNOrgS" name="name" placeholder="Organization Name">
-                        <label for="npmNNameS">Name:</label>
-                        <input type="text" id="npmNNameS" name="name" placeholder="Package Name">
-
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="text" class="form-control" id="npmNOrgS" name="organization" placeholder="Organization Name">
+                            <label for="npmNOrgS">Organization</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="npmNNameS" name="name" placeholder="Package Name">
+                            <label for="npmNNameS">Name</label>
+                        </div>
                     </div>
+                    
                     <!-- npm Package Version -->
                     <div id="npmVersion" style="display:none;">
-                        <label for="npmVName">Name:</label>
-                        <input type="text" id="npmVName" name="name" placeholder="Package Name">
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="text" class="form-control" id="npmVName" name="name" placeholder="Package Name">
+                            <label for="npmVName">Name</label>
+                        </div>
                     </div>
+                    
                     <!-- npm Package Version (Scoped) -->
                     <div id="npmVersionScoped" style="display:none;">
-                        <label for="npmVOrgS">Organization:</label>
-                        <input type="text" id="npmVOrgS" name="name" placeholder="Organization Name">
-                        <label for="npmVNameS">Name:</label>
-                        <input type="text" id="npmVNameS" name="name" placeholder="Package Name">
-
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="text" class="form-control" id="npmVOrgS" name="organization" placeholder="Organization Name">
+                            <label for="npmVOrgS">Organization</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="npmVNameS" name="name" placeholder="Package Name">
+                            <label for="npmVNameS">Name</label>
+                        </div>
                     </div>
+                    
                     <!-- npm Package License -->
                     <div id="npmLicense" style="display:none;">
-                        <label for="npmLName">Name:</label>
-                        <input type="text" id="npmLName" name="name" placeholder="Package Name">
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="text" class="form-control" id="npmLName" name="name" placeholder="Package Name">
+                            <label for="npmLName">Name</label>
+                        </div>
                     </div>
+                    
                     <!-- npm Package License (Scoped) -->
                     <div id="npmLicenseScoped" style="display:none;">
-                        <label for="npmLOrgS">Organization:</label>
-                        <input type="text" id="npmLOrgS" name="name" placeholder="Organization Name">
-                        <label for="npmLNameS">Name:</label>
-                        <input type="text" id="npmLNameS" name="name" placeholder="Package Name">
-
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="text" class="form-control" id="npmLOrgS" name="organization" placeholder="Organization Name">
+                            <label for="npmLOrgS">Organization</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="npmLNameS" name="name" placeholder="Package Name">
+                            <label for="npmLNameS">Name</label>
+                        </div>
                     </div>
+                    
                     <!-- npm Package Types -->
                     <div id="npmTypes" style="display:none;">
-                        <label for="npmTName">Name:</label>
-                        <input type="text" id="npmTName" name="name" placeholder="Package Name">
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="text" class="form-control" id="npmTName" name="name" placeholder="Package Name">
+                            <label for="npmTName">Name</label>
+                        </div>
                     </div>
+                    
                     <!-- npm Package Types (Scoped) -->
                     <div id="npmTypesScoped" style="display:none;">
-                        <label for="npmTOrgS">Organization:</label>
-                        <input type="text" id="npmTOrgS" name="name" placeholder="Organization Name">
-                        <label for="npmTNameS">Name:</label>
-                        <input type="text" id="npmTNameS" name="name" placeholder="Package Name">
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="text" class="form-control" id="npmTOrgS" name="organization" placeholder="Organization Name">
+                            <label for="npmTOrgS">Organization</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="npmTNameS" name="name" placeholder="Package Name">
+                            <label for="npmTNameS">Name</label>
+                        </div>
                     </div>
+
                 </div>
                 <!-- PyPi Section -->
-                <div id="pypiProvider" style="display: none;">
-                    <label for="pypiOption">PyPi Options:</label>
-                    <select id="pypiOption" name="pypiOption">
+                <div id="pypiProvider" class="mt-3" style="display: none;">
+                    <label for="pypiOption" class="mt-3">PyPi Options:</label>
+                    <select class="Ryans-Dropdowns" id="pypiOption" name="pypiOption">
                         <option value="name">PyPi Package Name</option>
                         <option value="version">PyPi Package Version</option>
                         <option value="name&version">PyPi Package Name & Version</option>
                         <option value="license">PyPi Package License</option>
                     </select>
-                
-                <!-- PyPi-Specific Options -->
-                <!-- PyPi Package Name -->
-                <div id="pypiName">
-                    <label for="pypiNName">PyPi Package Name:</label>
-                    <input type="text" id="pypiNName" name="name" placeholder="PyPi Package Name">
-                </div>
-                <!-- PyPi Package Version -->
-                <div id="pypiVersion" style="display:none;">
-                    <label for="pypiVName">PyPi Package Name:</label>
-                    <input type="text" id="pypiVName" name="name" placeholder="PyPi Package Name">
-                </div>
-                <!-- PyPi Package Name & Version -->
-                <div id="pypiName&Version" style="display:none;">
-                    <label for="pypiNVName">PyPi Package Name:</label>
-                    <input type="text" id="pypiNVName" name="name" placeholder="PyPi Package Name">
-                </div>
-                <!-- PyPi Package License -->
-                <div id="pypiLicense" style="display:none;">
-                    <label for="pypiLName">PyPi Package Name:</label>
-                    <input type="text" id="pypiLName" name="name" placeholder="PyPi Package Name">
-                </div>
+
+                    <!-- PyPi-Specific Options -->
+                    <!-- PyPi Package Name -->
+                    <div id="pypiName">
+                        <div class="form-floating mb-3 mt-3">
+                            <input type="text" class="form-control" id="pypiNName" name="name" placeholder="PyPi Package Name">
+                            <label for="pypiNName">PyPi Package Name</label>
+                        </div>
+                    </div>
+                    
+                    <!-- PyPi Package Version -->
+                    <div id="pypiVersion" style="display:none;">
+                        <div class="form-floating mb-3 mt-3">
+                            <input type="text" class="form-control" id="pypiVName" name="name" placeholder="PyPi Package Name">
+                            <label for="pypiVName">PyPi Package Name</label>
+                        </div>
+                    </div>
+                    
+                    <!-- PyPi Package Name & Version -->
+                    <div id="pypiNameAndVersion" style="display:none;">
+                        <div class="form-floating mb-3 mt-3">
+                            <input type="text" class="form-control" id="pypiNVName" name="name" placeholder="PyPi Package Name">
+                            <label for="pypiNVName">PyPi Package Name</label>
+                        </div>
+                    </div>
+                    
+                    <!-- PyPi Package License -->
+                    <div id="pypiLicense" style="display:none;">
+                        <div class="form-floating mb-3 mt-3">
+                            <input type="text" class="form-control" id="pypiLName" name="name" placeholder="PyPi Package Name">
+                            <label for="pypiLName">PyPi Package Name</label>
+                        </div>
+                    </div>
+
                 </div>
             </form>
         </section>

@@ -4,24 +4,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <style>
+        .select2-search__field {
+            width: 100% !important;
+            /* Adjust width as needed */
+            padding: 0.375rem 0.75rem;
+            /* Bootstrap form-control padding */
+            font-size: 1rem;
+            /* Bootstrap form-control font-size */
+            line-height: 1.5;
+            /* Bootstrap form-control line-height */
+            color: #495057;
+            /* Bootstrap form-control text color */
+            background-color: #fff;
+            /* Bootstrap form-control background color */
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            /* Bootstrap form-control border color */
+            border-radius: 0.25rem;
+            /* Bootstrap form-control border-radius */
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        /* Optional: Add focus styles */
+        .select2-search__field:focus {
+            border-color: #80bdff;
+            /* Bootstrap form-control border color on focus */
+            outline: 0;
+            /* Remove the default focus outline */
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            /* Bootstrap form-control focus shadow */
+        }
+    </style>
     <title>Custom Badges Generator</title>
 </head>
 
 <body>
-    <header>
-        <div class="logo-container">
-            <a href="/"><img src="/assets/images/logo.png" alt="BadgeGenerator Logo" width="100px" height="100px"></a>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="/assets/images/logo-small.png" width="50px" height="50px">
+                BadgeGenerator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile_badges.html">Profile Badges</a>
+                    </li>
+                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                        <ul class="navbar-nav nav-item">
+                            <li class="nav-item dropdown">
+                                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Generate Badges
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="/generate_badge.html">Home</a></li>
+                                    <li><a class="dropdown-item active" aria-current="page"
+                                            href="/generate/custom.html">Generate Custom Badges</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="/generate/platform.html">Generate Platform
+                                            Badges</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/profile_badges">Profile Badges</a></li>
-                <li><a href="/generate_badge">Generate Badge</a></li>
-                <li><a href="/about">About Us</a></li>
-            </ul>
-        </nav>
-    </header>
+    </nav>
 
     <main>
         <section class="badge-generator">
@@ -29,11 +97,12 @@
             <h2 style="text-align: center;">Custom Badge Generator</h2>
 
 
-            <div style="text-align: center;" class="badge-preview">
+            <div class="badge-preview text-center">
                 <h3>Badge Preview</h3>
-                <table id="previewTable" style="width: fit-content;">
+                <table class=table id="previewTable" style="  margin-left: auto;
+  margin-right: auto;">
                     <tr>
-                        <th><button type="button" id="previewButton" class="cta-button">Preview Badge</button></th>
+                        <th><button type="button" id="previewButton" class="btn btn-primary">Preview Badge</button></th>
                         <th><img id="previewImage" src="" alt="Badge Preview"></th>
                         <th><code id="previewURL" style="font-size: 15px;">Badge URL</code></th>
                     </tr>
@@ -42,14 +111,14 @@
             <!-- Provider -->
             <form id="badgeForm">
                 <label for="provider">Provider:</label>
-                <select id="provider" name="provider">
+                <select class="Ryans-Dropdowns" id="provider" name="provider">
                     <option value="badgers.space">badgers.space</option>
                     <option value="shields.io">shields.io</option>
                 </select>
                 <!-- Shields IO-->
                 <div id="badgeTypeContainer" style="display: none;">
                     <label for="badgeType">Badge Type:</label>
-                    <select id="badgeType" name="badgeType">
+                    <select class="Ryans-Dropdowns" id="badgeType" name="badgeType">
                         <option value="color">1 Color</option>
                         <option value="two-colors">Two Colors</option>
                     </select>
@@ -57,16 +126,20 @@
 
                 <div id="badgeContentInput" style="display: none;">
                     <label for="badgeContent">Badge Content:</label>
-                    <input type="text" id="badgeContent" name="badgeContent" placeholder="Text on logo side">
+                    <input class="form-control" type="text" id="badgeContent" name="badgeContent"
+                        placeholder="Text on logo side">
+                </div>
+                <div id="color">
+                    <label for="colorInput">Color:</label>
+                    <input type="color" class="form-control form-control-color" id="colorInput">
                 </div>
                 <div id="shieldsOnly" style="display: none;">
                     <label for="label">Label:</label>
-                    <input type="text" id="label" name="label" placeholder="Text on color side">
-
+                    <input class="form-control" type="text" id="label" name="label" placeholder="Text on color side">
 
 
                     <label for="style">Style:</label>
-                    <select id="style" name="style">
+                    <select class="Ryans-Dropdowns" id="style" name="style">
                         <option value="flat">Flat</option>
                         <option value="flat-square">Flat Square</option>
                         <option value="plastic">Plastic</option>
@@ -77,163 +150,178 @@
                     <div>
                         <label for="logo">Logo:</label>
                     </div>
-                    <label>Get icon names from <a
-                            href="https://github.com/simple-icons/simple-icons/blob/master/slugs.md">Here.</a></label>
-                    <input type="text" id="logo" name="logo" placeholder="appveyor">
+                    <label>Get icon names from <a class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="https://github.com/simple-icons/simple-icons/blob/master/slugs.md">Here.</a></label>
+                    <input class="form-control" type="text" id="logo" name="logo" placeholder="appveyor">
 
                     <label for="logoColor">Logo Color:</label>
-                    <input type="text" id="logoColor" name="logoColor" placeholder="logocolor">
+                    <input class="form-control" type="text" id="logoColor" name="logoColor" placeholder="logocolor">
 
                     <label for="labelColor">Logo Background Color:</label>
-                    <input type="text" id="labelColor" name="labelColor"
+                    <input class="form-control" type="text" id="labelColor" name="labelColor"
                         placeholder="The background color behind the logo">
                     <label for="cacheSeconds">Cache Seconds:</label>
-                    <input type="number" id="cacheSeconds" name="cacheSeconds" placeholder="cacheseconds">
+                    <input class="form-control" type="number" id="cacheSeconds" name="cacheSeconds"
+                        placeholder="cacheseconds">
                 </div>
                 <div id="badgersSpaceOnly">
-                    <label for="bscolor">Badge Color:</label>
-                    <input type="text" id="bscolor" placeholder="The Color for the right side of the badge">
+                    <label for="bscolor" class="mt-3">Badge Color:</label>
+                    <input class="form-control" type="text" id="bscolor"
+                        placeholder="The Color for the right side of the badge">
 
                     <div><label for="bsicons">Logo:</label></div>
-                    <div><label>Find the Icon names <a href="https://badgers.space/icons">Here.</a></label></div>
-                    <input type="text" id="bsicons"
+                    <div><label>Find the Icon names <a target="_blank" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="https://badgers.space/icons">Here.</a></label></div>
+                    <input class="form-control" type="text" id="bsicons"
                         placeholder="The Icon which appears on the left side of badge (gray area)">
 
                     <label for="bslabel">Label:</label>
-                    <input id="bslabel" type="text"
+                    <input class="form-control" id="bslabel" type="text"
                         placeholder="The Text which appears on the left side of badge (along with icon in gray area)">
 
                     <label for="bsstatus">Status:</label>
-                    <input id="bsstatus" type="text"
+                    <input class="form-control" id="bsstatus" type="text"
                         placeholder="The Text which appears on the right side of badge (coloured area)">
 
                     <label for="bslabelcolor">Label Color:</label>
-                    <input id="bslabelcolor" type="text"
+                    <input class="form-control" id="bslabelcolor" type="text"
                         placeholder="The Color for label color on the right side of badge (colored area)">
 
                     <div><label for="bsscale">Badge Scale:</label></div>
-                    <input id="bsscale" type="number" placeholder="The Size of the Badge (default: 1)">
+                    <input class="form-control" id="bsscale" type="number"
+                        placeholder="The Size of the Badge (default: 1)">
 
                     <div><label for="bstheme">Badge Theme</label></div>
                     <div><label>See Themes:</div>
                     <div> Honey: <img src="https://honey.badgers.space/theme/honey">,</label></div>
                     <div><label>Tailwind: <img src="https://honey.badgers.space/theme/tailwind">,</label></div>
                     <div><label>and BadGen: <img src="https://honey.badgers.space/theme/badgen"></label></div>
-                    <input id="bstheme" type="text" placeholder="The Theme of the Badge (default: Honey)">
+                    <input class="form-control mt-2" id="bstheme" type="text"
+                        placeholder="The Theme of the Badge (default: Honey)">
 
                     <div><label for="bsiconwidth">Icon Width:</label></div>
-                    <input id="bsiconwidth" type="number" placeholder="Width of the Icon">
+                    <input class="form-control" id="bsiconwidth" type="number" placeholder="Width of the Icon">
 
                     <div><label for="bscornerradius">Badge Corner Radius:</label></div>
-                    <input id="bscornerradius" type="number"
+                    <input class="form-control" id="bscornerradius" type="number"
                         placeholder="The factor which defines how rounded the corners are">
 
                     <div><label for="bscache">Cache Duration:</label></div>
-                    <input id="bscache" type="number" placeholder="The Cache">
+                    <input class="form-control mb-10" id="bscache" type="number" placeholder="The Cache">
                 </div>
             </form>
         </section>
     </main>
     <script>
-        const providerSelect = document.getElementById('provider');
-        const badgeTypeContainer = document.getElementById('badgeTypeContainer');
-        const badgeContentInput = document.getElementById('badgeContentInput');
-        const shieldsOnlyFields = document.getElementById('shieldsOnly');
-        const badgeTypeSelect = document.getElementById('badgeType');
-        const previewButton = document.getElementById('previewButton');
-        const previewImage = document.getElementById('previewImage');
-        const previewURL = document.getElementById('previewURL');
-        const badgeForm = document.getElementById('badgeForm');
-        const badgersSpaceOnly = document.getElementById("badgersSpaceOnly");
+        $(document).ready(function () {
+            // Initialize Select2
+            $('.Ryans-Dropdowns').select2();
 
-        providerSelect.addEventListener('change', function () {
-            if (providerSelect.value === 'shields.io') {
-                badgeTypeContainer.style.display = 'block';
-                badgeContentInput.style.display = badgeTypeSelect.value === 'two-colors' ? 'block' : 'none';
-                shieldsOnlyFields.style.display = 'block';
-                badgersSpaceOnly.style.display = "none";
-            } else if (providerSelect.value === 'badgers.space') {
-                badgeTypeContainer.style.display = 'none';
-                badgeContentInput.style.display = 'none';
-                shieldsOnlyFields.style.display = 'none';
-                badgersSpaceOnly.style.display = "block";
-            } else {
-                badgeTypeContainer.style.display = 'none';
-                badgeContentInput.style.display = 'none';
-                shieldsOnlyFields.style.display = 'none';
-                statusLabel.style.display = 'none'; // Show the status label
-                colorLabel.style.display = 'none'; // Show the color label
-                statusInput.style.display = 'none'; // Show the status input
-                colorInput.style.display = 'none'; // Show the color input
-            }
-        });
+            const providerSelect = $('#provider');
+            const badgeTypeContainer = $('#badgeTypeContainer');
+            const badgeContentInput = $('#badgeContentInput');
+            const shieldsOnlyFields = $('#shieldsOnly');
+            const badgeTypeSelect = $('#badgeType');
+            const previewButton = $('#previewButton');
+            const previewImage = $('#previewImage');
+            const previewURL = $('#previewURL');
+            const badgeForm = $('#badgeForm');
+            const badgersSpaceOnly = $('#badgersSpaceOnly');
+            const colorInput = $('#color');
 
-        badgeTypeSelect.addEventListener('change', function () {
-            badgeContentInput.style.display = badgeTypeSelect.value === 'two-colors' ? 'block' : 'none';
-        });
 
-        previewButton.addEventListener('click', function () {
-            const formData = new FormData(badgeForm);
-            const params = new URLSearchParams(formData);
-            params.delete('provider');
-            console.log(`FORMDATA: ${formData} && PARAMS: ${params}`)// How is the formdata/params var populated?
-        
-
-            const isShieldsIoProvider = providerSelect.value === 'shields.io';
-            const isBadgersSpaceProvider = providerSelect.value === 'badgers.space';
-            if (isShieldsIoProvider) {
-                let badgeUrl =
-                    `https://img.shields.io/badge/${params.get('badgeContent')}-${params.get('label')}-${params.get('color').replace('#', '')}`;
-                const style = params.get('style');
-                const logo = params.get('logo');
-                const logoColor = params.get('logoColor');
-                const labelColor = params.get('labelColor');
-                const cacheSeconds = params.get('cacheSeconds');
-
-                if (style) badgeUrl += `?style=${style}`;
-                if (logo) badgeUrl += `&logo=${logo}`;
-                if (logoColor) badgeUrl += `&logoColor=${logoColor}`;
-                if (labelColor) badgeUrl += `&labelColor=${labelColor}`;
-                if (cacheSeconds) badgeUrl += `&cacheSeconds=${cacheSeconds}`;
-
-                if (badgeTypeSelect.value === 'two-colors') {
-                    badgeUrl += `&color&color=${params.get('color')}`;
+            // Event listener for provider dropdown change
+            providerSelect.on('select2:select', function (e) {
+                const selectedProvider = e.params.data.text;
+                if (selectedProvider === 'shields.io') {
+                    badgeTypeContainer.show();
+                    colorInput.show()
+                    badgeContentInput.css('display', badgeTypeSelect.val() === 'two-colors' ? 'block' :
+                        'none');
+                    shieldsOnlyFields.show();
+                    badgersSpaceOnly.hide();
+                } else if (selectedProvider === 'badgers.space') {
+                    badgeTypeContainer.hide();
+                    badgeContentInput.hide();
+                    shieldsOnlyFields.hide();
+                    colorInput.hide(); // Hide color input when not in shields.io provider
+                    badgersSpaceOnly.show();
                 }
+            });
 
-                previewImage.src = badgeUrl;
-                previewURL.innerHTML = badgeUrl;
-
-            } else if (isBadgersSpaceProvider) {
-                const bslabel = document.getElementById('bslabel').value;
-                const bsstatus = document.getElementById('bsstatus').value;
-                const bscolor = document.getElementById('bscolor').value;
-
-                if (!bslabel || !bsstatus || !bscolor) {
-                    alert('Please enter all required fields. (Label, Status, Color)');
-                } else {
+            // Event listener for badgeTypeSelect change
+            badgeTypeSelect.on('select2:select', function (e) {
+                const selectedBadgeType = e.params.data.text;
+                badgeContentInput.css('display', badgeTypeSelect.val() === 'two-colors' ? 'block' :
+                    'none');
+            });
 
 
-                let badgeUrl = `https://badgers.space/badge/${bslabel}/${bsstatus}/${bscolor}`;
-                const labelcolor = document.getElementById('bslabelcolor').value;
-                const scale = document.getElementById('bsscale').value;
-                const theme = document.getElementById('bstheme').value;
-                const iconwidth = document.getElementById('bsiconwidth').value;
-                const cache = document.getElementById('bscache').value;
-                const icon = document.getElementById('bsicons').value;
-                const cornerradius = document.getElementById('bscornerradius').value;
+            // Event listener for previewButton click
+            previewButton.on('click', function () {
+                const formData = new FormData($('#badgeForm')[0]);
+                const params = new URLSearchParams(formData);
+                params.delete('provider');
+                console.log(`FORMDATA: ${formData} && PARAMS: ${params}`);
 
-                if (icon) badgeUrl += `?icon=${icon}`;
-                if (labelcolor) badgeUrl += `&labelcolor=${labelcolor}`;
-                if (scale) badgeUrl += `&scale=${scale}`;
-                if (theme) badgeUrl += `&theme=${theme}`;
-                if (iconwidth) badgeUrl += `&iconwidth=${iconwidth}`;
-                if (cache) badgeUrl += `&cache=${cache}`;
-                if (cornerradius) badgeUrl += `&corner_radius=${cornerradius}`;
+                const isShieldsIoProvider = providerSelect.val() === 'shields.io';
+                const isBadgersSpaceProvider = providerSelect.val() === 'badgers.space';
 
-                previewImage.src = badgeUrl;
-                previewURL.innerHTML = badgeUrl;
+                if (isShieldsIoProvider) {
+                    var color = $("#colorInput").val().replace("#", "")
+                    console.log(color)
+                    var badgeUrl =
+                        `https://img.shields.io/badge/${params.get('badgeContent')}-${params.get('label')}-${color}`;
+
+                    const style = params.get('style');
+                    const logo = params.get('logo');
+                    const logoColor = params.get('logoColor');
+                    const labelColor = params.get('labelColor');
+                    const cacheSeconds = params.get('cacheSeconds');
+
+                    if (style) badgeUrl += `?style=${style}`;
+                    if (logo) badgeUrl += `&logo=${logo}`;
+                    if (logoColor) badgeUrl += `&logoColor=${logoColor}`;
+                    if (labelColor) badgeUrl += `&labelColor=${labelColor}`;
+                    if (cacheSeconds) badgeUrl += `&cacheSeconds=${cacheSeconds}`;
+
+                    if (badgeTypeSelect.value === 'two-colors') {
+                        badgeUrl += `&color&color=${params.get('color')}`;
+                    }
+
+                    previewImage.attr('src', badgeUrl);
+                    previewURL.html(badgeUrl);
+
+                } else if (isBadgersSpaceProvider) {
+                    const bslabel = document.getElementById('bslabel').value;
+                    const bsstatus = document.getElementById('bsstatus').value;
+                    const bscolor = document.getElementById('bscolor').value;
+
+                    if (!bslabel || !bsstatus || !bscolor) {
+                        alert('Please enter all required fields. (Label, Status, Color)');
+                    } else {
+
+
+                        let badgeUrl = `https://badgers.space/badge/${bslabel}/${bsstatus}/${bscolor}`;
+                        const labelcolor = document.getElementById('bslabelcolor').value;
+                        const scale = document.getElementById('bsscale').value;
+                        const theme = document.getElementById('bstheme').value;
+                        const iconwidth = document.getElementById('bsiconwidth').value;
+                        const cache = document.getElementById('bscache').value;
+                        const icon = document.getElementById('bsicons').value;
+                        const cornerradius = document.getElementById('bscornerradius').value;
+
+                        if (icon) badgeUrl += `?icon=${icon}`;
+                        if (labelcolor) badgeUrl += `&labelcolor=${labelcolor}`;
+                        if (scale) badgeUrl += `&scale=${scale}`;
+                        if (theme) badgeUrl += `&theme=${theme}`;
+                        if (iconwidth) badgeUrl += `&iconwidth=${iconwidth}`;
+                        if (cache) badgeUrl += `&cache=${cache}`;
+                        if (cornerradius) badgeUrl += `&corner_radius=${cornerradius}`;
+
+                        previewImage.attr('src', badgeUrl);
+                        previewURL.html(badgeUrl);
+                    }
                 }
-            }
+            });
         });
     </script>
 
