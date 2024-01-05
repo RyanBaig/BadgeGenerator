@@ -8,33 +8,52 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <style>
+        
+        .img-thumbnail-provider img {
+        max-width: 60px; /* Set the maximum width for the images */
+        margin-right: 10px; /* Adjust the margin as needed */
+        margin-bottom: 5px;
+        margin-left: 10px;
+        
+        }
         .select2-search__field {
-        width: 100% !important; /* Adjust width as needed */
-        padding: 0.375rem 0.75rem; /* Bootstrap form-control padding */
-        font-size: 1rem; /* Bootstrap form-control font-size */
-        line-height: 1.5; /* Bootstrap form-control line-height */
-        color: #495057; /* Bootstrap form-control text color */
-        background-color: #fff; /* Bootstrap form-control background color */
-        background-clip: padding-box;
-        border: 1px solid #ced4da; /* Bootstrap form-control border color */
-        border-radius: 0.25rem; /* Bootstrap form-control border-radius */
-        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            width: 100% !important;
+            /* Adjust width as needed */
+            padding: 0.375rem 0.75rem;
+            /* Bootstrap form-control padding */
+            font-size: 1rem;
+            /* Bootstrap form-control font-size */
+            line-height: 1.5;
+            /* Bootstrap form-control line-height */
+            color: #495057;
+            /* Bootstrap form-control text color */
+            background-color: #fff;
+            /* Bootstrap form-control background color */
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            /* Bootstrap form-control border color */
+            border-radius: 0.25rem;
+            /* Bootstrap form-control border-radius */
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
 
         /* Optional: Add focus styles */
         .select2-search__field:focus {
-        border-color: #80bdff; /* Bootstrap form-control border color on focus */
-        outline: 0; /* Remove the default focus outline */
-        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Bootstrap form-control focus shadow */
+            border-color: #80bdff;
+            /* Bootstrap form-control border color on focus */
+            outline: 0;
+            /* Remove the default focus outline */
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            /* Bootstrap form-control focus shadow */
         }
     </style>
-    <title>Custom Badges Generator</title>
+    <title>Platform Badges Generator</title>
 </head>
 
 <body>
@@ -99,24 +118,37 @@
             <!-- Provider -->
             <form id="badgeForm">
                 <label for="provider">Provider:</label>
-                <select id="provider" class="Ryans-Dropdowns" name="provider">
-                    <option value="github">GitHub</option>
-                    <option value="crates.io">crates.io</option>
-                    <option value="npm">npm</option>
-                    <option value="pypi">PyPi</option>
+                <select id="provider" class="Ryans-Dropdowns-Provider" name="provider">
+                    <option data-image="https://github.com/favicon.ico" value="github">GitHub</option>
+                    <option data-image="https://crates.io/favicon.ico" value="crates.io">crates.io</option>
+                    <option data-image="https://static-production.npmjs.com/b0f1a8318363185cc2ea6a40ac23eeb2.png"
+                        value="npm">npm
+                    </option>
+                    <option
+                        data-image="https://seeklogo.com/images/P/pypi-logo-5B953CE804-seeklogo.com.png"
+                        value="pypi">
+                        PyPi</option>
                 </select>
                 <!-- GitHub Section -->
                 <div id="githubProvider" class="mt-3">
                     <label for="githubOption">GitHub Options:</label>
                     <select class="Ryans-Dropdowns" id="githubOption" name="githubOption">
-                        <option value="latestRelease">Latest Release</option>
-                        <option value="issues">Total Issues</option>
-                        <option value="openIssues">Open Issues</option>
-                        <option value="closedIssues">Closed Issues</option>
-                        <option value="checks">Checks (Repository-specific)</option>
-                        <option value="checksBranch">Checks (Branch-specific)</option>
-                        <option value="contributors">Contributors</option>
-                        <option value="license">License</option>
+                        <option data-image="https://badgers.space/github/release/RyanBaig/ICEPOS" value="latestRelease">
+                            Latest Release</option>
+                        <option data-image="https://badgers.space/github/issues/RyanBaig/ICEPOS" value="issues">Total
+                            Issues</option>
+                        <option data-image="https://badgers.space/github/open-issues/RyanBaig/ICEPOS" value="openIssues">
+                            Open Issues</option>
+                        <option data-image="https://badgers.space/github/closed-issues/RyanBaig/ICEPOS"  value="closedIssues">
+                            Closed Issues</option>
+                        <option data-image="https://badgers.space/github/checks/RyanBaig/ICEPOS" value="checks">Checks
+                            (Repository-specific)</option>
+                        <option data-image="https://badgers.space/github/checks/RyanBaig/ICEPOS/master" value="checksBranch">
+                            Checks (Branch-specific)</option>
+                        <option data-image="https://badgers.space/github/contributors/RyanBaig/ICEPOS" value="contributors">
+                            Contributors</option>
+                        <option data-image="https://badgers.space/github/license/RyanBaig/ICEPOS" value="license">
+                            License</option>
                     </select><br>
 
                     <!-- GitHub-specific options -->
@@ -228,11 +260,13 @@
                     <!-- GitHub License -->
                     <div id="githubLicense" style="display: none;">
                         <div class="form-floating mt-3 mb-3">
-                            <input type="text" class="form-control" id="ghlowner" name="owner" placeholder="GitHub owner">
+                            <input type="text" class="form-control" id="ghlowner" name="owner"
+                                placeholder="GitHub owner">
                             <label for="ghlowner">Owner</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="ghlrepo" name="repo" placeholder="GitHub repository">
+                            <input type="text" class="form-control" id="ghlrepo" name="repo"
+                                placeholder="GitHub repository">
                             <label for="ghlrepo">Repository</label>
                         </div>
                     </div>
@@ -242,11 +276,16 @@
                 <div id="cratesIoProvider" class="mt-3" style="display: none;">
                     <label for="cratesIoOption">crates.io Options:</label>
                     <select class="Ryans-Dropdowns" id="cratesIoOption" name="cratesIoOption">
-                        <option value="name">Crate Name</option>
-                        <option value="version">Crate Version</option>
-                        <option value="name&version">Crate Name & Version</option>
-                        <option value="downloads">Total Downloads</option>
-                        <option value="latestDownloads">Total Downloads (Latest Version)</option>
+                        <option data-image="https://badgers.space/crates/name/rand" value="name">Crate
+                            Name</option>
+                        <option data-image="https://badgers.space/crates/version/rand" value="version">Crate Version
+                        </option>
+                        <option data-image="https://badgers.space/crates/info/rand" value="name&version">Crate Name &
+                            Version</option>
+                        <option data-image="https://badgers.space/crates/downloads/rand" value="downloads">Total Downloads
+                        </option>
+                        <option data-image="https://badgers.space/crates/downloads/rand/latest" value="latestDownloads">Total
+                            Downloads (Latest Version)</option>
                     </select>
                     <!-- crates.io-specific Options -->
                     <!-- crates.io Crate Name -->
@@ -256,7 +295,7 @@
                             <label for="cnname">Name</label>
                         </div>
                     </div>
-                    
+
                     <!-- crates.io Crate Version -->
                     <div id="cratesIoVersion" style="display:none;">
                         <div class="form-floating mt-3 mb-3">
@@ -264,7 +303,7 @@
                             <label for="cnvname">Name</label>
                         </div>
                     </div>
-                    
+
                     <!-- crates.io Crate Name + Version -->
                     <div id="cratesIoNameAndVersion" style="display:none;">
                         <div class="form-floating mt-3 mb-3">
@@ -272,7 +311,7 @@
                             <label for="cniname">Name</label>
                         </div>
                     </div>
-                    
+
                     <!-- crates.io Crate Downloads -->
                     <div id="cratesIoDownloads" style="display:none;">
                         <div class="form-floating mt-3 mb-3">
@@ -280,7 +319,7 @@
                             <label for="cndname">Name</label>
                         </div>
                     </div>
-                    
+
                     <!-- crates.io Crate Downloads (Latest) -->
                     <div id="cratesIoDownloadsLatest" style="display:none;">
                         <div class="form-floating mt-3 mb-3">
@@ -295,92 +334,110 @@
                 <div id="npmProvider" style="display: none;">
                     <label for="npmOption" class="mt-3">npm Options:</label>
                     <select class="Ryans-Dropdowns" id="npmOption" name="npmOption">
-                        <option value="name">Package Name</option>
-                        <option value="nameScoped">Package Name (Scoped)</option>
-                        <option value="version">Package Version</option>
-                        <option value="versionScoped">Package Version (Scoped)</option>
-                        <option value="license">Package License</option>
-                        <option value="licenseScoped">Package License (Scoped)</option>
-                        <option value="types">Package Types</option>
-                        <option value="typesScoped">Package Types (Scoped)</option>
+                        <option data-image="https://badgers.space/npm/name/express" value="name">Package Name</option>
+                        <option data-image="https://badgers.space/npm/name/@vercel/node" value="nameScoped">Package Name
+                            (Scoped)</option>
+                        <option data-image="https://badgers.space/npm/version/express" value="version">Package Version
+                        </option>
+                        <option data-image="https://badgers.space/npm/version/@vercel/node" value="versionScoped">Package
+                            Version (Scoped)</option>
+                        <option data-image="https://badgers.space/npm/license/express" value="license">Package License
+                        </option>
+                        <option data-image="https://badgers.space/npm/license/@vercel/node" value="licenseScoped">Package
+                            License (Scoped)</option>
+                        <option data-image="https://badgers.space/npm/types/express" value="types">Package Types</option>
+                        <option data-image="https://badgers.space/npm/types/@vercel/node" value="typesScoped">Package
+                            Types (Scoped)</option>
                     </select>
 
                     <!-- npm Package Name -->
                     <div id="npmName">
                         <div class="form-floating mt-3 mb-3">
-                            <input type="text" class="form-control" id="npmNName" name="name" placeholder="Package Name">
+                            <input type="text" class="form-control" id="npmNName" name="name"
+                                placeholder="Package Name">
                             <label for="npmNName">Name</label>
                         </div>
                     </div>
-                    
+
                     <!-- npm Package Name (Scoped) -->
                     <div id="npmNameScoped" style="display:none;">
                         <div class="form-floating mt-3 mb-3">
-                            <input type="text" class="form-control" id="npmNOrgS" name="organization" placeholder="Organization Name">
+                            <input type="text" class="form-control" id="npmNOrgS" name="organization"
+                                placeholder="Organization Name">
                             <label for="npmNOrgS">Organization</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="npmNNameS" name="name" placeholder="Package Name">
+                            <input type="text" class="form-control" id="npmNNameS" name="name"
+                                placeholder="Package Name">
                             <label for="npmNNameS">Name</label>
                         </div>
                     </div>
-                    
+
                     <!-- npm Package Version -->
                     <div id="npmVersion" style="display:none;">
                         <div class="form-floating mt-3 mb-3">
-                            <input type="text" class="form-control" id="npmVName" name="name" placeholder="Package Name">
+                            <input type="text" class="form-control" id="npmVName" name="name"
+                                placeholder="Package Name">
                             <label for="npmVName">Name</label>
                         </div>
                     </div>
-                    
+
                     <!-- npm Package Version (Scoped) -->
                     <div id="npmVersionScoped" style="display:none;">
                         <div class="form-floating mt-3 mb-3">
-                            <input type="text" class="form-control" id="npmVOrgS" name="organization" placeholder="Organization Name">
+                            <input type="text" class="form-control" id="npmVOrgS" name="organization"
+                                placeholder="Organization Name">
                             <label for="npmVOrgS">Organization</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="npmVNameS" name="name" placeholder="Package Name">
+                            <input type="text" class="form-control" id="npmVNameS" name="name"
+                                placeholder="Package Name">
                             <label for="npmVNameS">Name</label>
                         </div>
                     </div>
-                    
+
                     <!-- npm Package License -->
                     <div id="npmLicense" style="display:none;">
                         <div class="form-floating mt-3 mb-3">
-                            <input type="text" class="form-control" id="npmLName" name="name" placeholder="Package Name">
+                            <input type="text" class="form-control" id="npmLName" name="name"
+                                placeholder="Package Name">
                             <label for="npmLName">Name</label>
                         </div>
                     </div>
-                    
+
                     <!-- npm Package License (Scoped) -->
                     <div id="npmLicenseScoped" style="display:none;">
                         <div class="form-floating mt-3 mb-3">
-                            <input type="text" class="form-control" id="npmLOrgS" name="organization" placeholder="Organization Name">
+                            <input type="text" class="form-control" id="npmLOrgS" name="organization"
+                                placeholder="Organization Name">
                             <label for="npmLOrgS">Organization</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="npmLNameS" name="name" placeholder="Package Name">
+                            <input type="text" class="form-control" id="npmLNameS" name="name"
+                                placeholder="Package Name">
                             <label for="npmLNameS">Name</label>
                         </div>
                     </div>
-                    
+
                     <!-- npm Package Types -->
                     <div id="npmTypes" style="display:none;">
                         <div class="form-floating mt-3 mb-3">
-                            <input type="text" class="form-control" id="npmTName" name="name" placeholder="Package Name">
+                            <input type="text" class="form-control" id="npmTName" name="name"
+                                placeholder="Package Name">
                             <label for="npmTName">Name</label>
                         </div>
                     </div>
-                    
+
                     <!-- npm Package Types (Scoped) -->
                     <div id="npmTypesScoped" style="display:none;">
                         <div class="form-floating mt-3 mb-3">
-                            <input type="text" class="form-control" id="npmTOrgS" name="organization" placeholder="Organization Name">
+                            <input type="text" class="form-control" id="npmTOrgS" name="organization"
+                                placeholder="Organization Name">
                             <label for="npmTOrgS">Organization</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="npmTNameS" name="name" placeholder="Package Name">
+                            <input type="text" class="form-control" id="npmTNameS" name="name"
+                                placeholder="Package Name">
                             <label for="npmTNameS">Name</label>
                         </div>
                     </div>
@@ -390,41 +447,49 @@
                 <div id="pypiProvider" class="mt-3" style="display: none;">
                     <label for="pypiOption" class="mt-3">PyPi Options:</label>
                     <select class="Ryans-Dropdowns" id="pypiOption" name="pypiOption">
-                        <option value="name">PyPi Package Name</option>
-                        <option value="version">PyPi Package Version</option>
-                        <option value="name&version">PyPi Package Name & Version</option>
-                        <option value="license">PyPi Package License</option>
+                        <option data-image="https://badgers.space/pypi/name/envhub" value="name">PyPi Package Name
+                        </option>
+                        <option data-image="https://badgers.space/pypi/version/envhub" value="version">PyPi Package Version
+                        </option>
+                        <option data-image="https://badgers.space/pypi/info/envhub" value="name&version">PyPi Package
+                            Name & Version</option>
+                        <option data-image="https://badgers.space/pypi/license/envhub" value="license">PyPi Package License
+                        </option>
                     </select>
 
                     <!-- PyPi-Specific Options -->
                     <!-- PyPi Package Name -->
                     <div id="pypiName">
                         <div class="form-floating mb-3 mt-3">
-                            <input type="text" class="form-control" id="pypiNName" name="name" placeholder="PyPi Package Name">
+                            <input type="text" class="form-control" id="pypiNName" name="name"
+                                placeholder="PyPi Package Name">
                             <label for="pypiNName">PyPi Package Name</label>
                         </div>
                     </div>
-                    
+
                     <!-- PyPi Package Version -->
                     <div id="pypiVersion" style="display:none;">
                         <div class="form-floating mb-3 mt-3">
-                            <input type="text" class="form-control" id="pypiVName" name="name" placeholder="PyPi Package Name">
+                            <input type="text" class="form-control" id="pypiVName" name="name"
+                                placeholder="PyPi Package Name">
                             <label for="pypiVName">PyPi Package Name</label>
                         </div>
                     </div>
-                    
+
                     <!-- PyPi Package Name & Version -->
                     <div id="pypiNameAndVersion" style="display:none;">
                         <div class="form-floating mb-3 mt-3">
-                            <input type="text" class="form-control" id="pypiNVName" name="name" placeholder="PyPi Package Name">
+                            <input type="text" class="form-control" id="pypiNVName" name="name"
+                                placeholder="PyPi Package Name">
                             <label for="pypiNVName">PyPi Package Name</label>
                         </div>
                     </div>
-                    
+
                     <!-- PyPi Package License -->
                     <div id="pypiLicense" style="display:none;">
                         <div class="form-floating mb-3 mt-3">
-                            <input type="text" class="form-control" id="pypiLName" name="name" placeholder="PyPi Package Name">
+                            <input type="text" class="form-control" id="pypiLName" name="name"
+                                placeholder="PyPi Package Name">
                             <label for="pypiLName">PyPi Package Name</label>
                         </div>
                     </div>
@@ -433,8 +498,8 @@
             </form>
         </section>
     </main>
-    <script src="../assets/js/script.js"></script>
-    <script src="../assets/js/url_funcs.js"></script>
+    <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/url_funcs.js"></script>
 </body>
 
 </html>

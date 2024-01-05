@@ -1,5 +1,42 @@
 $(document).ready(function () {
-  $(".Ryans-Dropdowns").select2();
+  $(".Ryans-Dropdowns").select2({
+    templateResult: formatOption,
+    templateSelection: formatOption,
+  });
+  function formatOption(option) {
+    if (!option.id) {
+      return option.text;
+    }
+
+    var $option = $(
+      '<span><img src="' +
+        $(option.element).data("image") +
+        '" class="img-thumbnail" />' +
+        option.text +
+        "</span>"
+    );
+
+    return $option;
+  }
+  $(".Ryans-Dropdowns-Provider").select2({
+    templateResult: formatOption2,
+    templateSelection: formatOption2,
+  });
+  function formatOption2(option) {
+    if (!option.id) {
+      return option.text;
+    }
+
+    var $option = $(
+      '<span><img src="' +
+        $(option.element).data("image") +
+        '" class="img-thumbnail-provider" style="max-width: 20px; margin-right: 10px; margin-bottom: 5px;"/>' +
+        option.text +
+        "</span>"
+    );
+
+    return $option;
+  }
 });
 
 const providerSelect = document.getElementById("provider");
